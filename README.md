@@ -2,18 +2,19 @@
 
 ```shellscript
 # run
-npx webpack-dev-server
+npm start
 
 # build
-npx webpack
+npm run build
 
 # build (production)
-NODE_ENV=production npx webpack
+npm run build:production
 
 # test
-npx jest
+npm run test
 
 # test watch
-npx jest --watch
+npm run test:watch
+
 
 ```

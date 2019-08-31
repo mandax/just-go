@@ -1,21 +1,14 @@
 {
-  "name": "manager-pos",
+  "name": "common",
   "version": "1.0.0",
-  "description": "Manager and Point Of Sail App",
+  "description": "Design System Components",
   "main": "index.html",
   "repository": {
     "type": "git",
     "url": "git+https://gitlab.com/mandax/just-go.git"
   },
-  "keywords": [
-    "pub",
-    "restaurant",
-    "pos",
-    "point",
-    "of",
-    "sail",
-    "manager"
-  ],
+  "author": "Anderson Ferreira Pinto (Mandax)",
+  "license": "UNLICENSED",
   "scripts": {
     "start": "npx webpack-dev-server --no-inline",
     "test": "npx jest",
@@ -23,8 +16,6 @@
     "build": "npx webpack",
     "build:production": "NODE_ENV=production npx webpack"
   },
-  "author": "Anderson Ferreira Pinto (Mandax)",
-  "license": "UNLICENSED",
   "bugs": {
     "url": "https://gitlab.com/mandax/just-go/issues"
   },
