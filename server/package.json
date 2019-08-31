@@ -1,0 +1,22 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/mandax/just-go.git"
+  },
+  "author": "Anderson Ferreira Pinto (Mandax)",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://gitlab.com/mandax/just-go/issues"
+  },
+  "homepage": "https://gitlab.com/mandax/just-go#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

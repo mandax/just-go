@@ -1,0 +1,42 @@
+{
+  "name": "manager-pos",
+  "version": "1.0.0",
+  "description": "Manager and Point Of Sail App",
+  "main": "index.html",
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/mandax/just-go.git"
+  },
+  "keywords": [
+    "pub",
+    "restaurant",
+    "pos",
+    "point",
+    "of",
+    "sail",
+    "manager"
+  ],
+  "author": "Anderson Ferreira Pinto (Mandax)",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://gitlab.com/mandax/just-go/issues"
+  },
+  "homepage": "https://gitlab.com/mandax/just-go#readme",
+  "devDependencies": {
+    "@types/jest": "^24.0.18",
+    "@types/react": "^16.9.2",
+    "@types/react-dom": "^16.9.0",
+    "jest": "^24.9.0",
+    "source-map-loader": "^0.2.4",
+    "ts-jest": "^24.0.2",
+    "ts-loader": "^6.0.4",
+    "typescript": "^3.6.2",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.0"
+  },
+  "dependencies": {
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  }
+}
