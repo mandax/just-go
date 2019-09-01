@@ -9,9 +9,8 @@ import theme from "./theme";
 import { rem } from "./theme/utils";
 
 const mainCSS:React.CSSProperties = {
-  transformStyle: 'flat',
-  padding: `${rem(theme.MAIN_VERTICAL_PADDING)} ${rem(theme.MAIN_HORIZONTAL_PADDING)}`,
-  paddingLeft: `${rem(theme.SIDENAV_CLOSE_WIDTH + theme.MAIN_HORIZONTAL_PADDING)}`
+  padding: `${rem(theme.DEFAULT_VERTICAL_PADDING)} ${rem(theme.DEFAULT_HORIZONTAL_PADDING)}`,
+  paddingLeft: `${rem(theme.SIDENAV_CLOSE_WIDTH + theme.DEFAULT_HORIZONTAL_PADDING)}`
 }
 
 const App:React.ReactElement = (

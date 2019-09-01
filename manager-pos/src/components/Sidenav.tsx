@@ -1,19 +1,20 @@
 import * as React from "react";
 import { IconType } from "react-icons";
 import theme from "../theme";
-import { primaryColorBase } from "../theme/mixins";
-import { rem } from "../theme/utils";
+import { container, shadowOn } from "../theme/mixins";
+import { rem, Direction } from "../theme/utils";
 
 const sidenavCSS = (isOpen: boolean): React.CSSProperties => ({
+	...container(),
+	...shadowOn(Direction.Right, theme.SHADOW_BLUR_LARGE),
+
 	top: 0,
 	left: `${rem(theme.SIDENAV_CLOSE_WIDTH - theme.SIDENAV_FULL_WIDTH)}`,
 	width: rem(theme.SIDENAV_FULL_WIDTH),
 	transform: isOpen ? `translateX(${rem(theme.SIDENAV_FULL_WIDTH - theme.SIDENAV_CLOSE_WIDTH)})` : `translateX(0)`,
 	height: '100%',
 	position: 'fixed',
-	padding: '2rem 0',
-	transition: '300ms transform ease-in-out',
-	...primaryColorBase()
+	transition: '300ms transform ease-in-out'
 })
 
 const linksCSS = (isOpen: boolean): React.CSSProperties => ({
