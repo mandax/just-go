@@ -5,7 +5,8 @@ import { FiHome } from "react-icons/fi";
 
 import { Sidenav, SidenavLink } from './components/Sidenav'
 import { Hello } from "./components/Hello";
-import theme, { rem } from "./theme";
+import theme from "./theme";
+import { rem } from "./theme/utils";
 
 const mainCSS:React.CSSProperties = {
   transformStyle: 'flat',
