@@ -12,7 +12,7 @@ module.exports = {
 	devtool: "source-map",
 	
 	resolve: {
-		extensions: [".ts", ".tsx"]
+		extensions: [".js", ".ts", ".tsx"]
 	},
 
 	module: {
@@ -51,7 +51,8 @@ module.exports = {
 	
 	externals: {
 		"react": "React",
-		"react-dom": "ReactDOM"
+		"react-dom": "ReactDOM",
+		"react-router-dom": "ReactRouterDOM"
 	},
 
 	...(isProduction ? {} : require('./webpack.development.js'))
