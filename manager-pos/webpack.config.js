@@ -2,6 +2,7 @@ const dotenv = require('dotenv');
 const path = require('path');
 const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
+const developmentConfig = require('./webpack.development.js');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -55,5 +56,5 @@ module.exports = {
 		"react-router-dom": "ReactRouterDOM"
 	},
 
-	...(isProduction ? {} : require('./webpack.development.js'))
+	...(isProduction ? {} : developmentConfig)
 };
