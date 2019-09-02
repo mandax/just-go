@@ -2,9 +2,12 @@ import { CSSProperties } from "react";
 import theme from "./index";
 import { rem, px, Direction, walk } from "./utils";
 
+export type FontConstructor =
+  (fontSize?:number, fontFamily?:string) => React.CSSProperties
+
 export const fontBase = (
   fontWeight:number = theme.FONT_DEFAULT_WEIGHT,
-) => (
+):FontConstructor => (
   size:number = theme.FONT_DEFAULT_SIZE,
   fontFamily:string = theme.FONT_PRIMARY
 ):React.CSSProperties => ({
@@ -13,14 +16,19 @@ export const fontBase = (
   fontSize: rem(size)
 })
 
-export const font:(fontSize?:number, fontFamily?:string) => React.CSSProperties = fontBase(theme.FONT_DEFAULT_WEIGHT);
-export const fontMedium:(fontSize?:number, fontFamily?:string) => React.CSSProperties = fontBase(theme.FONT_MEDIUM_WEIGHT);
-export const fontStrong:(fontSize?:number, fontFamily?:string) => React.CSSProperties = fontBase(theme.FONT_STRONG_WEIGHT);
+export const font:FontConstructor = fontBase(theme.FONT_DEFAULT_WEIGHT);
+
+export const fontMedium:FontConstructor = fontBase(theme.FONT_MEDIUM_WEIGHT);
+
+export const fontStrong:FontConstructor = fontBase(theme.FONT_STRONG_WEIGHT);
+
+export type ContainerConstructor =
+  (hPadding?:number, vPadding?:number) => React.CSSProperties
 
 export const containerBase = (
   fontColor:string = theme.COLOR_DARK, 
   bgColor:string = theme.COLOR_LIGHT,
-) => (
+):ContainerConstructor => (
   hPadding:number = theme.DEFAULT_HORIZONTAL_PADDING,
   vPadding:number = theme.DEFAULT_VERTICAL_PADDING
 ):CSSProperties => ({
@@ -30,7 +38,9 @@ export const containerBase = (
   padding: `${rem(vPadding)} ${rem(hPadding)}`
 });
 
-export const container:(hPadding?:number, vPadding?:number) => React.CSSProperties = containerBase();
+export const container:ContainerConstructor = containerBase();
+
+export const containerAccent:ContainerConstructor = containerBase(theme.COLOR_LIGHT, theme.COLOR_PRIMARY);
 
 export const shadow = (
   blur:number = theme.SHADOW_BLUR,

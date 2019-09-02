@@ -11,8 +11,7 @@ import { rem } from "./theme/utils";
 import { container } from "./theme/mixins";
 
 const mainCSS:React.CSSProperties = {
-  ...container(),
-  paddingLeft: `${rem(theme.SIDENAV_CLOSE_WIDTH + theme.DEFAULT_HORIZONTAL_PADDING)}`
+  paddingLeft: `${rem(theme.SIDENAV_CLOSE_WIDTH)}`
 }
 
 const routes = {
@@ -24,7 +23,7 @@ const routes = {
 const App = ():React.ReactElement => (
   <div id="main">
     
-    <Sidenav>
+    <Sidenav fixed={true}>
       <SidenavLink icon={FiHome} to="/">Home</SidenavLink>
       <SidenavLink icon={FiBookOpen} to="/menu">Menu</SidenavLink>
       <SidenavLink icon={FiPaperclip} to="/teste">Teste</SidenavLink>

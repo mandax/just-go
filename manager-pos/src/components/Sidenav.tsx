@@ -4,19 +4,30 @@ import theme from "../theme";
 import { A } from "hookrouter";
 import { IconType } from "react-icons";
 import { FiMenu, FiX } from "react-icons/fi";
-import { container, shadowOn, verticalCenter, fontMedium } from "../theme/mixins";
 import { rem, seconds, Direction, px } from "../theme/utils";
+import {
+	container as containerConstructor,
+	ContainerConstructor,
+	shadowOn,
+	fontMedium,
+	verticalCenter
+} from "../theme/mixins";
 
-const sidenavCSS = (isOpen: boolean): React.CSSProperties => ({
+const sidenavCSS = (
+	isOpen: boolean,
+	fixed: boolean = false,
+	container: ContainerConstructor = containerConstructor
+): React.CSSProperties => ({
 	...container(0, 0),
 	...shadowOn(Direction.Right, theme.SHADOW_BLUR_LARGE),
 
 	top: 0,
+	zIndex: fixed ? 50 : 'auto',
 	left: `${rem(theme.SIDENAV_CLOSE_WIDTH - theme.SIDENAV_FULL_WIDTH)}`,
-	width: rem(theme.SIDENAV_FULL_WIDTH),
+	minWidth: rem(theme.SIDENAV_FULL_WIDTH),
 	transform: isOpen ? `translateX(${rem(theme.SIDENAV_FULL_WIDTH - theme.SIDENAV_CLOSE_WIDTH)})` : `translateX(0)`,
 	height: '100%',
-	position: 'fixed',
+	position: fixed ? 'fixed' : 'absolute',
 	transition: '300ms transform ease-in-out'
 })
 
@@ -28,25 +39,29 @@ const sidenavContentCSS: React.CSSProperties = {
 const SidenavContext = React.createContext([]);
 
 export interface SidenavProps {
-	children: React.ReactElement[]
+	children: React.ReactElement[] | HTMLElement[] | HTMLElement | React.ReactElement
+	fixed?: boolean,
+	alwaysOpen?: boolean,
+	container?: ContainerConstructor,
 }
 
 export const Sidenav = (props: SidenavProps) => {
 
-	const [isOpen, setOpenState] = React.useState(false);
+	const [isOpen, setOpenState] = React.useState(props.alwaysOpen);
+	const { children, fixed, container, alwaysOpen } = props;
 
 	return (
 		<SidenavContext.Provider value={[isOpen, setOpenState]}>
-			<div style={sidenavCSS(isOpen)}>
+			<div style={sidenavCSS(isOpen, fixed, container)}>
 
-				<SidenavLink
+				{alwaysOpen ? '' : <SidenavLink
 					icon={isOpen ? FiX : FiMenu}
 					onClick={() => setOpenState(!isOpen)}>
 					Close
-				</SidenavLink>
+				</SidenavLink>}
 
 				<div style={sidenavContentCSS}>
-					{props.children}
+					{children}
 				</div>
 			</div>
 		</SidenavContext.Provider>
