@@ -4,11 +4,11 @@ import theme from "../theme";
 import { A } from "hookrouter";
 import { IconType } from "react-icons";
 import { FiMenu, FiX } from "react-icons/fi";
-import { container, shadowOn, verticalCenter } from "../theme/mixins";
+import { container, shadowOn, verticalCenter, fontMedium } from "../theme/mixins";
 import { rem, seconds, Direction } from "../theme/utils";
 
 const sidenavCSS = (isOpen: boolean): React.CSSProperties => ({
-	...container(undefined, undefined, 0, 0),
+	...container(0, 0),
 	...shadowOn(Direction.Right, theme.SHADOW_BLUR_LARGE),
 
 	top: 0,
@@ -25,7 +25,7 @@ const sidenavContentCSS: React.CSSProperties = {
 	width: '100%'
 }
 
-const SidenavContext = React.createContext(false);
+const SidenavContext = React.createContext([]);
 
 export interface SidenavProps {
 	children: React.ReactElement[]
@@ -36,7 +36,7 @@ export const Sidenav = (props: SidenavProps) => {
 	const [isOpen, setOpenState] = React.useState(false);
 
 	return (
-		<SidenavContext.Provider value={isOpen}>
+		<SidenavContext.Provider value={[isOpen, setOpenState]}>
 			<div id="comp_sidenav" style={sidenavCSS(isOpen)}>
 
 				<SidenavLink
@@ -76,10 +76,11 @@ const activeBarCSS = (isActive: boolean): React.CSSProperties => ({
 })
 
 const textCSS = (isOpen: boolean): React.CSSProperties => ({
+	...fontMedium(theme.SIDENAV_FONT_SIZE, theme.FONT_CONDENSED),
+
 	display: 'inline-block',
 	opacity: isOpen ? 1 : 0,
 	pointerEvents: isOpen ? 'auto' : 'none',
-	fontSize: rem(theme.SIDENAV_FONT_SIZE),
 	marginLeft: rem(theme.DEFAULT_HORIZONTAL_PADDING / 1.4),
 	transitionDelay: seconds(theme.ANIMATION_SPEED / 2),
 	transition: `${seconds(theme.ANIMATION_SPEED * 2)} opacity ease-in-out`
@@ -101,12 +102,17 @@ export interface SidenavLinkProps {
 
 export const SidenavLink = (props: SidenavLinkProps) => {
 
-	const isOpen = React.useContext(SidenavContext);
+	const [isOpen, setOpenState] = React.useContext(SidenavContext);
 	const isActive = window.location.pathname === props.to;
+
+	const onClickEvent = () => {
+		props.onClick && props.onClick();
+		isOpen && setOpenState(false);
+	}
 
 	return (
 		<A href={props.to || ''}
-			onClick={() => props.onClick && props.onClick()}
+			onClick={onClickEvent}
 			style={linkCSS}>
 			<div style={activeBarCSS(isActive)}></div>
 			<div style={iconCSS(isOpen)}><props.icon size={rem(theme.SIDENAV_ICON_SIZE)} /></div>
