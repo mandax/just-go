@@ -5,7 +5,7 @@ import { A } from "hookrouter";
 import { IconType } from "react-icons";
 import { FiMenu, FiX } from "react-icons/fi";
 import { container, shadowOn, verticalCenter, fontMedium } from "../theme/mixins";
-import { rem, seconds, Direction } from "../theme/utils";
+import { rem, seconds, Direction, px } from "../theme/utils";
 
 const sidenavCSS = (isOpen: boolean): React.CSSProperties => ({
 	...container(0, 0),
@@ -37,7 +37,7 @@ export const Sidenav = (props: SidenavProps) => {
 
 	return (
 		<SidenavContext.Provider value={[isOpen, setOpenState]}>
-			<div id="comp_sidenav" style={sidenavCSS(isOpen)}>
+			<div style={sidenavCSS(isOpen)}>
 
 				<SidenavLink
 					icon={isOpen ? FiX : FiMenu}
@@ -70,6 +70,7 @@ const activeBarCSS = (isActive: boolean): React.CSSProperties => ({
 	opacity: isActive ? 1 : 0,
 	height: rem(theme.SIDENAV_ICON_SIZE * 2),
 	backgroundColor: theme.COLOR_PRIMARY,
+	borderRadius: px(10),
 	transitionProperty: 'opacity transform',
 	transition: `${seconds(theme.ANIMATION_SPEED)} ease-in-out`,
 	transform: `scaleY(${isActive ? 1 : 0})`
