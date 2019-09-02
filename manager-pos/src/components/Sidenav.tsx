@@ -1,14 +1,14 @@
 import * as React from "react";
 import theme from "../theme";
 
+import { A } from "hookrouter";
 import { IconType } from "react-icons";
-import { FiMenu, FiX, FiPercent } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { FiMenu, FiX } from "react-icons/fi";
 import { container, shadowOn, verticalCenter } from "../theme/mixins";
 import { rem, seconds, Direction } from "../theme/utils";
 
 const sidenavCSS = (isOpen: boolean): React.CSSProperties => ({
-	...container()(0, 1.5),
+	...container(undefined, undefined, 0, 0),
 	...shadowOn(Direction.Right, theme.SHADOW_BLUR_LARGE),
 
 	top: 0,
@@ -53,7 +53,7 @@ export const Sidenav = (props: SidenavProps) => {
 	);
 }
 
-const linkCSS:React.CSSProperties = {
+const linkCSS: React.CSSProperties = {
 	display: 'block',
 	margin: '1.5rem 0',
 	cursor: 'pointer',
@@ -63,15 +63,16 @@ const linkCSS:React.CSSProperties = {
 
 const activeBarCSS = (isActive: boolean): React.CSSProperties => ({
 	position: 'absolute',
-	top: 0,
+	zIndex: -1,
+	top: rem(-theme.SIDENAV_FONT_SIZE / 1.7),
 	right: 0,
-	width: rem(0.5),
+	width: rem(0.2),
 	opacity: isActive ? 1 : 0,
-	height: rem(theme.SIDENAV_ICON_SIZE),
+	height: rem(theme.SIDENAV_ICON_SIZE * 2),
 	backgroundColor: theme.COLOR_PRIMARY,
 	transitionProperty: 'opacity transform',
-	transition: `${theme.ANIMATION_SPEED} ease-in-out`,
-	transform: `scaleX(${isActive ? 1 : 0})`
+	transition: `${seconds(theme.ANIMATION_SPEED)} ease-in-out`,
+	transform: `scaleY(${isActive ? 1 : 0})`
 })
 
 const textCSS = (isOpen: boolean): React.CSSProperties => ({
@@ -101,15 +102,15 @@ export interface SidenavLinkProps {
 export const SidenavLink = (props: SidenavLinkProps) => {
 
 	const isOpen = React.useContext(SidenavContext);
+	const isActive = window.location.pathname === props.to;
 
 	return (
-		<Link
-			to={props.to}
+		<A href={props.to || ''}
 			onClick={() => props.onClick && props.onClick()}
 			style={linkCSS}>
-			<div style={activeBarCSS(window.location.pathname === props.to)}></div>
+			<div style={activeBarCSS(isActive)}></div>
 			<div style={iconCSS(isOpen)}><props.icon size={rem(theme.SIDENAV_ICON_SIZE)} /></div>
 			<div style={textCSS(isOpen)}>{props.children}</div>
-		</Link>
+		</A>
 	);
 } 

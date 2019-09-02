@@ -4,13 +4,13 @@ import { rem, px, Direction, walk } from "./utils";
 
 export const container = (
   fontColor:string = theme.COLOR_DARK, 
-  bgColor:string = theme.COLOR_LIGHT
-) => (
+  bgColor:string = theme.COLOR_LIGHT,
   horizontalPadding:number = theme.DEFAULT_HORIZONTAL_PADDING,
   verticalPadding:number = theme.DEFAULT_VERTICAL_PADDING
 ):CSSProperties => ({
   color: fontColor,
   backgroundColor: bgColor,
+  fontFamily: theme.PRIMARY_FONT,
   padding: `${rem(verticalPadding)} ${rem(horizontalPadding)}`
 });
 

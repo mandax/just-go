@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { useRoutes } from "hookrouter";
 import { FiHome, FiPaperclip } from "react-icons/fi";
 
 import { Sidenav, SidenavLink } from './components/Sidenav'
@@ -13,8 +13,13 @@ const mainCSS:React.CSSProperties = {
   paddingLeft: `${rem(theme.SIDENAV_CLOSE_WIDTH + theme.DEFAULT_HORIZONTAL_PADDING)}`
 }
 
-const App:React.ReactElement = (
-  <Router>
+const routes = {
+  '/': () => <Hello />,
+  '/teste': () => <Hello />
+} 
+
+const App = ():React.ReactElement => (
+  <div id="main">
     
     <Sidenav>
       <SidenavLink icon={FiHome} to="/">Home</SidenavLink>
@@ -22,10 +27,9 @@ const App:React.ReactElement = (
     </Sidenav>
 
     <div style={mainCSS}>
-      <Route path="/" component={Hello} />
-      <Route path="/teste" component={Hello} />
+      {useRoutes(routes)}
     </div>
-  </Router>
+  </div>
 );
 
-ReactDOM.render(App, document.getElementById("app"));
+ReactDOM.render(<App />, document.getElementById("app"));
