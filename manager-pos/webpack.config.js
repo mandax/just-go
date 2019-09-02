@@ -47,6 +47,15 @@ module.exports = {
 		new CopyPlugin([{
 			from: path.resolve(__dirname, 'static'),
 			to: path.resolve(__dirname, 'dist')
+		}, {
+			from: path.resolve(__dirname, 'node_modules/react/umd/react.production.min.js'),
+			to: path.resolve(__dirname, 'dist/react.production.min.js')
+		}, {
+			from: path.resolve(__dirname, 'node_modules/react-dom/umd/react-dom.production.min.js'),
+			to: path.resolve(__dirname, 'dist/react-dom.production.min.js')
+		}, {
+			from: path.resolve(__dirname, 'node_modules/react-router-dom/umd/react-router-dom.min.js'),
+			to: path.resolve(__dirname, 'dist/react-router-dom.min.js')
 		}])
 	],
 	

@@ -1,4 +1,6 @@
 
+export const seconds = (num:number):string => `${num}s`;
+
 export const px = (num:number):string => `${num}px`;
 
 export const em = (num:number):string => `${num}em`;

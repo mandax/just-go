@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { FiHome } from "react-icons/fi";
+import { FiHome, FiPaperclip } from "react-icons/fi";
 
 import { Sidenav, SidenavLink } from './components/Sidenav'
 import { Hello } from "./components/Hello";
@@ -18,10 +18,12 @@ const App:React.ReactElement = (
     
     <Sidenav>
       <SidenavLink icon={FiHome} to="/">Home</SidenavLink>
+      <SidenavLink icon={FiPaperclip} to="/teste">Teste</SidenavLink>
     </Sidenav>
 
     <div style={mainCSS}>
       <Route path="/" component={Hello} />
+      <Route path="/teste" component={Hello} />
     </div>
   </Router>
 );
