@@ -109,7 +109,7 @@ const textCSS = (
 		display: 'inline-block',
 		opacity: isOpen ? 1 : 0,
 		pointerEvents: isOpen ? 'auto' : 'none',
-		marginLeft: rem(theme.DEFAULT_HORIZONTAL_PADDING / 1.4),
+		marginLeft: rem(theme.DEFAULT_HORIZONTAL_PADDING * 0.4),
 		transition: `
 			opacity ${duration} ease-out ${delay},
 			transform ${duration} ease-out ${delay}
@@ -125,7 +125,7 @@ const iconCSS = (isOpen: boolean, isActive: boolean): React.CSSProperties => {
 
 		verticalAlign: 'middle',
 		display: 'inline-block',
-		transform: `translateX(${isOpen ? 0 : translateVal})`,
+		transform: `translateX(${isOpen ? rem(1) : translateVal})`,
 		transition: `
 			transform ${seconds(theme.ANIMATION_SPEED)} ease-in-out,
 			color ${seconds(theme.ANIMATION_SPEED)} ease-in-out
