@@ -9,6 +9,7 @@ import {
 	container as containerConstructor,
 	ContainerConstructor,
 	shadowOn,
+	colorByState,
 	fontMedium,
 	verticalCenter
 } from "../theme/mixins";
@@ -93,12 +94,17 @@ const activeBarCSS = (isActive: boolean): React.CSSProperties => ({
 	transform: `scaleY(${isActive ? 1 : 0})`
 })
 
-const textCSS = (isOpen: boolean, idx: number = 0): React.CSSProperties => {
+const textCSS = (
+	isOpen: boolean,
+	isActive: boolean,
+	idx: number = 0
+): React.CSSProperties => {
 	const delay = seconds((theme.ANIMATION_SPEED / 4) * idx);
 	const duration = seconds(theme.ANIMATION_SPEED * 1.5);
 
 	return {
 		...fontMedium(theme.SIDENAV_FONT_SIZE, theme.FONT_CONDENSED),
+		...colorByState(isActive),
 
 		display: 'inline-block',
 		opacity: isOpen ? 1 : 0,
@@ -108,16 +114,24 @@ const textCSS = (isOpen: boolean, idx: number = 0): React.CSSProperties => {
 			opacity ${duration} ease-out ${delay},
 			transform ${duration} ease-out ${delay}
 		`,
-		transform: `translateX(${isOpen ? 0 : rem(-theme.SIDENAV_FULL_WIDTH)})`
+		transform: `translateX(${isOpen ? rem(1) : rem(-theme.SIDENAV_FULL_WIDTH)})`
 	}
 }
 
-const iconCSS = (isOpen: boolean): React.CSSProperties => ({
-	verticalAlign: 'middle',
-	display: 'inline-block',
-	transform: isOpen ? 'translateX(1rem)' : `translateX(${rem(theme.SIDENAV_FULL_WIDTH - theme.SIDENAV_CLOSE_WIDTH / 1.5)})`,
-	transition: `${seconds(theme.ANIMATION_SPEED)} transform ease-in-out`
-})
+const iconCSS = (isOpen: boolean, isActive: boolean): React.CSSProperties => {
+	const translateVal = rem(theme.SIDENAV_FULL_WIDTH - theme.SIDENAV_CLOSE_WIDTH / 1.5);
+	return {
+		...colorByState(isActive),
+
+		verticalAlign: 'middle',
+		display: 'inline-block',
+		transform: `translateX(${isOpen ? 0 : translateVal})`,
+		transition: `
+			transform ${seconds(theme.ANIMATION_SPEED)} ease-in-out,
+			color ${seconds(theme.ANIMATION_SPEED)} ease-in-out
+		`
+	}
+}
 
 export interface SidenavLinkProps {
 	to?: string
@@ -142,8 +156,8 @@ export const SidenavLink = (props: SidenavLinkProps) => {
 			onClick={onClickEvent}
 			style={linkCSS}>
 			<div style={activeBarCSS(isActive)}></div>
-			<div style={iconCSS(isOpen)}><props.icon size={rem(theme.SIDENAV_ICON_SIZE)} /></div>
-			<div style={textCSS(isOpen, props.idx)}>{props.children}</div>
+			<div style={iconCSS(isOpen, isActive)}><props.icon size={rem(theme.SIDENAV_ICON_SIZE)} /></div>
+			<div style={textCSS(isOpen, isActive, props.idx)}>{props.children}</div>
 		</A>
 	);
 } 

@@ -22,6 +22,10 @@ export const fontMedium: FontConstructor = fontBase(theme.FONT_MEDIUM_WEIGHT);
 
 export const fontStrong: FontConstructor = fontBase(theme.FONT_STRONG_WEIGHT);
 
+export const colorByState = (state: boolean):React.CSSProperties => ({
+  color: state ? theme.COLOR_PRIMARY : theme.COLOR_DARK
+})
+
 export type ContainerConstructor =
   (hPadding?: number, vPadding?: number) => React.CSSProperties
 
