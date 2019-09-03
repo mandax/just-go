@@ -25,7 +25,7 @@ const sidenavCSS = (
 	zIndex: fixed ? 50 : 'auto',
 	left: `${rem(theme.SIDENAV_CLOSE_WIDTH - theme.SIDENAV_FULL_WIDTH)}`,
 	minWidth: rem(theme.SIDENAV_FULL_WIDTH),
-	transform: isOpen ? `translateX(${rem(theme.SIDENAV_FULL_WIDTH - theme.SIDENAV_CLOSE_WIDTH)})` : `translateX(0)`,
+	transform: `translateX(${isOpen ? rem(theme.SIDENAV_FULL_WIDTH - theme.SIDENAV_CLOSE_WIDTH) : 0})`,
 	height: '100%',
 	position: fixed ? 'fixed' : 'absolute',
 	transition: '300ms transform ease-in-out'
@@ -86,21 +86,31 @@ const activeBarCSS = (isActive: boolean): React.CSSProperties => ({
 	height: rem(theme.SIDENAV_ICON_SIZE * 2),
 	backgroundColor: theme.COLOR_PRIMARY,
 	borderRadius: px(10),
-	transitionProperty: 'opacity transform',
-	transition: `${seconds(theme.ANIMATION_SPEED)} ease-in-out`,
+	transition: `
+		opacity ${seconds(theme.ANIMATION_SPEED)} ease-in-out,
+		transform ${seconds(theme.ANIMATION_SPEED)} ease-in-out
+	`,
 	transform: `scaleY(${isActive ? 1 : 0})`
 })
 
-const textCSS = (isOpen: boolean): React.CSSProperties => ({
-	...fontMedium(theme.SIDENAV_FONT_SIZE, theme.FONT_CONDENSED),
+const textCSS = (isOpen: boolean, idx: number = 0): React.CSSProperties => {
+	const delay = seconds((theme.ANIMATION_SPEED / 4) * idx);
+	const duration = seconds(theme.ANIMATION_SPEED * 1.5);
 
-	display: 'inline-block',
-	opacity: isOpen ? 1 : 0,
-	pointerEvents: isOpen ? 'auto' : 'none',
-	marginLeft: rem(theme.DEFAULT_HORIZONTAL_PADDING / 1.4),
-	transitionDelay: seconds(theme.ANIMATION_SPEED / 2),
-	transition: `${seconds(theme.ANIMATION_SPEED * 2)} opacity ease-in-out`
-})
+	return {
+		...fontMedium(theme.SIDENAV_FONT_SIZE, theme.FONT_CONDENSED),
+
+		display: 'inline-block',
+		opacity: isOpen ? 1 : 0,
+		pointerEvents: isOpen ? 'auto' : 'none',
+		marginLeft: rem(theme.DEFAULT_HORIZONTAL_PADDING / 1.4),
+		transition: `
+			opacity ${duration} ease-out ${delay},
+			transform ${duration} ease-out ${delay}
+		`,
+		transform: `translateX(${isOpen ? 0 : rem(-theme.SIDENAV_FULL_WIDTH)})`
+	}
+}
 
 const iconCSS = (isOpen: boolean): React.CSSProperties => ({
 	verticalAlign: 'middle',
@@ -111,6 +121,7 @@ const iconCSS = (isOpen: boolean): React.CSSProperties => ({
 
 export interface SidenavLinkProps {
 	to?: string
+	idx?: number
 	onClick?: Function
 	icon: IconType
 	children?: string
@@ -132,7 +143,7 @@ export const SidenavLink = (props: SidenavLinkProps) => {
 			style={linkCSS}>
 			<div style={activeBarCSS(isActive)}></div>
 			<div style={iconCSS(isOpen)}><props.icon size={rem(theme.SIDENAV_ICON_SIZE)} /></div>
-			<div style={textCSS(isOpen)}>{props.children}</div>
+			<div style={textCSS(isOpen, props.idx)}>{props.children}</div>
 		</A>
 	);
 } 

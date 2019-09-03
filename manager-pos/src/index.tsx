@@ -8,7 +8,6 @@ import theme from "./theme";
 import { Hello } from "./components/Hello";
 import { HouseMenu } from "./components/HouseMenu";
 import { rem } from "./theme/utils";
-import { container } from "./theme/mixins";
 
 const mainCSS:React.CSSProperties = {
   paddingLeft: `${rem(theme.SIDENAV_CLOSE_WIDTH)}`
@@ -24,9 +23,9 @@ const App = ():React.ReactElement => (
   <div id="main">
     
     <Sidenav fixed={true}>
-      <SidenavLink icon={FiHome} to="/">Home</SidenavLink>
-      <SidenavLink icon={FiBookOpen} to="/menu">Menu</SidenavLink>
-      <SidenavLink icon={FiPaperclip} to="/teste">Teste</SidenavLink>
+      <SidenavLink idx={0} icon={FiHome} to="/">Home</SidenavLink>
+      <SidenavLink idx={1} icon={FiBookOpen} to="/menu">Menu</SidenavLink>
+      <SidenavLink idx={2} icon={FiPaperclip} to="/teste">Teste</SidenavLink>
     </Sidenav>
 
     <div style={mainCSS}>
