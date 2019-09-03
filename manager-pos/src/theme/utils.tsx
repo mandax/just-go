@@ -7,6 +7,8 @@ export const em = (num:number):string => `${num}em`;
 
 export const rem = (num:number):string => `${num}rem`;
 
+export const percent = (num:number):string => `${num * 100}%`;
+
 export enum Direction {
 	Up = -1,
 	Down = 1,
