@@ -1,18 +1,20 @@
 import * as React from "react";
 import theme from "../theme";
+import { Children } from "../types";
 
 import { A } from "hookrouter";
 import { IconType } from "react-icons";
 import { FiMenu, FiX } from "react-icons/fi";
-import { rem, seconds, Direction, px } from "../theme/utils";
+import { rem, seconds, px } from "../theme/units";
+import { Direction } from "../theme/position";
+import { colorByState, fontMedium } from "../theme/font";
+import { shadowOn, Blur } from "../theme/shadow";
+
 import {
 	container as containerConstructor,
 	ContainerConstructor,
-	shadowOn,
-	colorByState,
-	fontMedium,
 	verticalCenter
-} from "../theme/mixins";
+} from "../theme/container";
 
 const sidenavCSS = (
 	isOpen: boolean,
@@ -20,7 +22,7 @@ const sidenavCSS = (
 	container: ContainerConstructor = containerConstructor
 ): React.CSSProperties => ({
 	...container(0, 0),
-	...shadowOn(Direction.Right, theme.SHADOW_BLUR_LARGE),
+	...shadowOn(Direction.Right, Blur.Medium),
 
 	top: 0,
 	zIndex: fixed ? 50 : 'auto',
@@ -40,10 +42,10 @@ const sidenavContentCSS: React.CSSProperties = {
 const SidenavContext = React.createContext([]);
 
 export interface SidenavProps {
-	children: React.ReactElement[] | HTMLElement[] | HTMLElement | React.ReactElement
-	fixed?: boolean,
-	alwaysOpen?: boolean,
-	container?: ContainerConstructor,
+	children: Children
+	fixed?: boolean
+	alwaysOpen?: boolean
+	container?: ContainerConstructor
 }
 
 export const Sidenav = (props: SidenavProps) => {
@@ -74,7 +76,7 @@ const linkCSS: React.CSSProperties = {
 	margin: '1.5rem 0',
 	cursor: 'pointer',
 	position: 'relative',
-	color: theme.COLOR_DARK
+	color: theme.COLOR_PRIMARY
 }
 
 const activeBarCSS = (isActive: boolean): React.CSSProperties => ({
@@ -85,8 +87,9 @@ const activeBarCSS = (isActive: boolean): React.CSSProperties => ({
 	width: rem(0.2),
 	opacity: isActive ? 1 : 0,
 	height: rem(theme.SIDENAV_ICON_SIZE * 2),
-	backgroundColor: theme.COLOR_PRIMARY,
+	backgroundColor: theme.COLOR_BRAND,
 	borderRadius: px(10),
+	// TODO: create a transition mixin to avoid duplications
 	transition: `
 		opacity ${seconds(theme.ANIMATION_SPEED)} ease-in-out,
 		transform ${seconds(theme.ANIMATION_SPEED)} ease-in-out
