@@ -1,5 +1,7 @@
 
 export type Children =
+  Element |
+  Element[] |
   React.ReactElement |
   HTMLElement |
   React.ReactElement[] |

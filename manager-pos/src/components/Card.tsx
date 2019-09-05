@@ -58,6 +58,7 @@ export const CardImage = (props: CardImageProps): React.ReactElement =>
 
 export interface CardProps {
 	children: Children
+	selected?: boolean
 	onSelect?: Function
 	onDeselect?: Function
 }
@@ -78,6 +79,10 @@ export const Card = (props: CardProps): React.ReactElement => {
 	const onClick = (event: React.MouseEvent) => {
 		isSelected ? deselectCard(event) : selectCard(event);
 	}
+
+	React.useEffect(() => {
+		setSelected(props.selected);
+	}, [props.selected]);
 
 	return (
 		<div onClick={onClick} style={cardCSS(Boolean(props.onSelect), isSelected)}>
