@@ -17,7 +17,7 @@ const mainCSS:React.CSSProperties = {
 }
 
 const routes = {
-  '/': () => <Hello />,
+  '/': () => <HouseMenu />,
   '/menu': () => <HouseMenu />,
   '/teste': () => <Hello />
 } 

@@ -21,7 +21,9 @@ export const fontMedium: FontConstructor = fontBase(theme.FONT_MEDIUM_WEIGHT);
 
 export const fontStrong: FontConstructor = fontBase(theme.FONT_STRONG_WEIGHT);
 
-export const limitChar = (text:string, limit: number): string => {
+export const capitalize = (str: string): string => str[0].toUpperCase() + str.slice(1);
+
+export const limitChar = (text: string, limit: number): string => {
   if (text.length > limit) {
     text = `${text.substring(0, limit)}...`;
   }

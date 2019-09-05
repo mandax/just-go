@@ -11,6 +11,13 @@ export interface Position {
 	y: number
 }
 
+export const opposite = (dir: Direction) => ({
+	[Direction.Up]: Direction.Down,
+	[Direction.Down]: Direction.Up,
+	[Direction.Left]: Direction.Right,
+	[Direction.Right]: Direction.Left
+}[dir])
+
 export const dirToCssString = (dir: Direction) => ({
 	[Direction.Up]: 'top',
 	[Direction.Down]: 'bottom',

@@ -19,26 +19,23 @@ import {
 const sidenavCSS = (
 	isOpen: boolean,
 	fixed: boolean = false,
-	container: ContainerConstructor = containerConstructor,
-	snap: Direction = Direction.Left
+	container: ContainerConstructor = containerConstructor
 ): React.CSSProperties => {
 
-	const xTranslation = (theme.SIDENAV_FULL_WIDTH - theme.SIDENAV_CLOSE_WIDTH) * -snap
-	const dirString = dirToCssString(snap);
+	const xTranslation = (theme.SIDENAV_FULL_WIDTH - theme.SIDENAV_CLOSE_WIDTH);
 
 	return {
 		...container(0, 0),
-		...shadowOn(snap, Blur.Medium),
+		...shadowOn(Direction.Right, Blur.Medium),
 
-		[dirString]: `${rem(theme.SIDENAV_CLOSE_WIDTH - theme.SIDENAV_FULL_WIDTH)}`,
-
+		left: `${rem(theme.SIDENAV_CLOSE_WIDTH - theme.SIDENAV_FULL_WIDTH)}`,
 		transform: `translateX(${isOpen ? rem(xTranslation) : 0})`,
 		top: 0,
 		zIndex: fixed ? 50 : 'auto',
 		minWidth: rem(theme.SIDENAV_FULL_WIDTH),
 		height: '100%',
 		position: fixed ? 'fixed' : 'absolute',
-		transition: '300ms transform ease-in-out'
+		transition: `${seconds(theme.ANIMATION_SPEED)} transform ease-in-out`
 	}
 }
 
@@ -51,7 +48,6 @@ const SidenavContext = React.createContext([]);
 
 export interface SidenavProps {
 	children: Children
-	snap?: Direction
 	fixed?: boolean
 	alwaysOpen?: boolean
 	container?: ContainerConstructor
@@ -60,11 +56,11 @@ export interface SidenavProps {
 export const Sidenav = (props: SidenavProps) => {
 
 	const [isOpen, setOpenState] = React.useState(props.alwaysOpen);
-	const { children, fixed, container, alwaysOpen, snap } = props;
+	const { children, fixed, container, alwaysOpen } = props;
 
 	return (
 		<SidenavContext.Provider value={[isOpen, setOpenState]}>
-			<div style={sidenavCSS(isOpen, fixed, container, snap)}>
+			<div style={sidenavCSS(isOpen, fixed, container)}>
 
 				{alwaysOpen ? '' : <SidenavLink
 					icon={isOpen ? FiX : FiMenu}
