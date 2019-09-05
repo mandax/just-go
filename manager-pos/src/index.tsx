@@ -7,10 +7,10 @@ import { Sidenav, SidenavLink } from './components/Sidenav'
 import theme from "./theme";
 import { Hello } from "./components/Hello";
 import { HouseMenu } from "./components/HouseMenu";
-import { rem, percent } from "./theme/units";
+import { vh, rem, percent } from "./theme/units";
 
 const mainCSS:React.CSSProperties = {
-  height: '100vh',
+  height: vh(100),
   maxHeight: percent(1),
   paddingLeft: `${rem(theme.SIDENAV_CLOSE_WIDTH)}`,
   background: theme.COLOR_BASE_2

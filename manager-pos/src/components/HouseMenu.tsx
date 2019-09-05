@@ -7,6 +7,7 @@ import { titleSpacing, limitChar, font } from "../theme/font";
 import { Card, CardImage } from "./Card";
 import { Grid } from "./Grid";
 import { Sidenav } from "./Sidenav";
+import { Direction } from "../theme/position";
 
 interface State {
 	items: Item[]
@@ -65,7 +66,7 @@ export const HouseMenu = (): React.ReactElement => {
 				</Grid>
 			</div>
 
-			<Sidenav fixed={true}>
+			<Sidenav fixed={true} snap={Direction.Right}>
 				
 			</Sidenav>
 

@@ -17,7 +17,7 @@
     "manager"
   ],
   "scripts": {
-    "start": "npx webpack --watch & npx http-server ./dist -p 8080 --silent",
+    "start": "npx webpack --watch & npx live-server ./dist --port 8080 --quiet --watch ./dist --no-browser",
     "test": "npx jest",
     "test:watch": "npx jest:watch",
     "build": "npx webpack",
@@ -35,9 +35,9 @@
     "@types/react": "^16.9.2",
     "@types/react-dom": "^16.9.0",
     "copy-webpack-plugin": "^5.0.4",
+    "live-server": "^1.2.1",
     "dotenv": "^8.1.0",
     "enzyme": "^3.10.0",
-    "http-server": "^0.11.1",
     "jest": "^24.9.0",
     "source-map-loader": "^0.2.4",
     "ts-jest": "^24.0.2",

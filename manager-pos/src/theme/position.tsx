@@ -11,12 +11,12 @@ export interface Position {
 	y: number
 }
 
-// export const dirToCssString = (dir: Direction) => ({
-// 	[Direction.Up]: 'top',
-// 	[Direction.Down]: 'bottom',
-// 	[Direction.Left]: 'left',
-// 	[Direction.Right]: 'right'
-// }[dir])
+export const dirToCssString = (dir: Direction) => ({
+	[Direction.Up]: 'top',
+	[Direction.Down]: 'bottom',
+	[Direction.Left]: 'left',
+	[Direction.Right]: 'right'
+}[dir])
 
 export const walkDirection = (directions: Direction[], dir: Direction, offset: number) =>
 	directions.includes(dir) ? offset * dir : 0;

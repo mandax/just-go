@@ -6,7 +6,7 @@ import { A } from "hookrouter";
 import { IconType } from "react-icons";
 import { FiMenu, FiX } from "react-icons/fi";
 import { rem, seconds, px } from "../theme/units";
-import { Direction } from "../theme/position";
+import { Direction, dirToCssString } from "../theme/position";
 import { colorByState, fontMedium } from "../theme/font";
 import { shadowOn, Blur } from "../theme/shadow";
 
@@ -20,22 +20,19 @@ const sidenavCSS = (
 	isOpen: boolean,
 	fixed: boolean = false,
 	container: ContainerConstructor = containerConstructor,
-	direction: Direction = Direction.Right
+	snap: Direction = Direction.Left
 ): React.CSSProperties => {
 
-	const xTranslation = (theme.SIDENAV_FULL_WIDTH - theme.SIDENAV_CLOSE_WIDTH) / direction
-	// const dirString = dirToCssString(direction);
-	// const cssPosition = { 
-	// 	[dirString]: `${rem(theme.SIDENAV_CLOSE_WIDTH - theme.SIDENAV_FULL_WIDTH)}`
-	// }
+	const xTranslation = (theme.SIDENAV_FULL_WIDTH - theme.SIDENAV_CLOSE_WIDTH) * -snap
+	const dirString = dirToCssString(snap);
 
 	return {
 		...container(0, 0),
-		...shadowOn(direction, Blur.Medium),
-		// ...cssPosition,
+		...shadowOn(snap, Blur.Medium),
+
+		[dirString]: `${rem(theme.SIDENAV_CLOSE_WIDTH - theme.SIDENAV_FULL_WIDTH)}`,
 
 		transform: `translateX(${isOpen ? rem(xTranslation) : 0})`,
-
 		top: 0,
 		zIndex: fixed ? 50 : 'auto',
 		minWidth: rem(theme.SIDENAV_FULL_WIDTH),
@@ -54,6 +51,7 @@ const SidenavContext = React.createContext([]);
 
 export interface SidenavProps {
 	children: Children
+	snap?: Direction
 	fixed?: boolean
 	alwaysOpen?: boolean
 	container?: ContainerConstructor
@@ -62,11 +60,11 @@ export interface SidenavProps {
 export const Sidenav = (props: SidenavProps) => {
 
 	const [isOpen, setOpenState] = React.useState(props.alwaysOpen);
-	const { children, fixed, container, alwaysOpen } = props;
+	const { children, fixed, container, alwaysOpen, snap } = props;
 
 	return (
 		<SidenavContext.Provider value={[isOpen, setOpenState]}>
-			<div style={sidenavCSS(isOpen, fixed, container)}>
+			<div style={sidenavCSS(isOpen, fixed, container, snap)}>
 
 				{alwaysOpen ? '' : <SidenavLink
 					icon={isOpen ? FiX : FiMenu}
