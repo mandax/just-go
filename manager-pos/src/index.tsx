@@ -10,8 +10,7 @@ import { HouseMenu } from "./components/HouseMenu";
 import { vh, rem, percent } from "./theme/units";
 
 const mainCSS:React.CSSProperties = {
-  height: vh(100),
-  maxHeight: percent(1),
+  minHeight: vh(100),
   paddingLeft: `${rem(theme.SIDENAV_CLOSE_WIDTH)}`,
   background: theme.COLOR_BASE_2
 }

@@ -14,7 +14,7 @@ export interface Item {
   name: string
   description: string
   category: string
-  pictures: string[]
+  picture: string
   max_discount: number
   price: number
   cost: number
@@ -24,7 +24,7 @@ export interface NewItem {
   name: string
   description: string
   category: string
-  pictures: string[]
+  picture: string
   max_discount: number
   price: number
   cost: number

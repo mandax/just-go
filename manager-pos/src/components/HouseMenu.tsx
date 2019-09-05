@@ -9,27 +9,7 @@ import { Card, CardImage } from "./Card";
 import { Grid } from "./Grid";
 import { SideContent } from "./SideContent";
 import { rem } from "../theme/units";
-
-interface State {
-	items: Item[]
-}
-
-const initialState: State = {
-	items: [
-		{
-			id: 'SXs',
-			created_at: new Date(),
-			modified_by: new Date(),
-			name: 'Triple Dipper™',
-			description: 'Why choose one when you can choose three? Select three appetizers and enjoy! Served with dipping sauces.',
-			category: 'Food',
-			pictures: ['https://static.olocdn.net/menu/chilis/a30644e222a6f6d261f13b5bf1f0b089.jpg'],
-			max_discount: 0.1,
-			price: 12,
-			cost: 8
-		}
-	]
-};
+import { GetItems } from "../api/items";
 
 export interface HeaderProps {
 	children: Children
@@ -53,7 +33,7 @@ const emptyForm: NewItem = {
 	name: '',
 	description: '',
 	category: '',
-	pictures: [],
+	picture: '',
 	max_discount: 0,
 	price: 0,
 	cost: 0
@@ -62,16 +42,32 @@ const emptyForm: NewItem = {
 export const HouseMenu = (): React.ReactElement => {
 
 	const initialForm: MenuForm = null;
-	
-	const [form, setForm] = React.useState(initialForm);
-	const [isContentOpen, setContentOpen] = React.useState(false);
+	const initialItems: Item[] = [];
 
-	const state = initialState;
+	const [form, setForm] = React.useState(initialForm);
+	const [items, setItems] = React.useState(initialItems);
+	const [isContentOpen, setContentOpen] = React.useState(false);
 
 	const openForm = (item: MenuForm) => {
 		setForm(item);
 		setContentOpen(true);
 	}
+
+	const fetchData = async () => {
+		const res = await GetItems();
+		const json = await res.json();
+		setItems(json.data);
+		// setItems(
+		// 	json.data.reduce((acc, item: Item) => {
+		// 		acc[item.category] = [ ...acc[item.category], item ];
+		// 		return acc;
+		// 	}, {})
+		// );
+	}
+
+	React.useEffect(() => {
+		fetchData();
+	}, []);
 
 	return (
 		<div>
@@ -85,16 +81,16 @@ export const HouseMenu = (): React.ReactElement => {
 
 				<h2 style={titleSpacing()}>Bebidas</h2>
 
-				<Grid columns={8}>
+				<Grid columns={6}>
 
-					<Card 
+					<Card
 						key="new_item"
 						selected={form === emptyForm}
 						onDeselect={() => setContentOpen(false)}
 						onSelect={() => openForm(emptyForm)}>
-						
+
 						<FiPlusCircle size={rem(theme.CARD_IMAGE_HEIGHT * 0.8)} />
-						
+
 						<h4 style={titleSpacing(0.8, 0.4)}>New Item</h4>
 						<p style={font(theme.CARD_DESCRIPTION_SIZE)}>
 							Add new item to your menu
@@ -102,13 +98,13 @@ export const HouseMenu = (): React.ReactElement => {
 					</Card>
 
 					<>
-						{state.items.map((item, index) => 	
-							<Card 
+						{items.map((item, index) =>
+							<Card
 								key={`item_${index}`}
 								selected={form === item}
 								onDeselect={() => setContentOpen(false)}
 								onSelect={() => openForm(item)}>
-								<CardImage src={item.pictures[0]} />
+								<CardImage src={item.picture} />
 								<h4 style={titleSpacing(0.8, 0.4)}>{item.name}</h4>
 								<p style={font(theme.CARD_DESCRIPTION_SIZE)}>
 									{limitChar(item.description, theme.CARD_DESCRIPTION_LIMIT)}
