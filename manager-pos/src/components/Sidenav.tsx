@@ -19,20 +19,31 @@ import {
 const sidenavCSS = (
 	isOpen: boolean,
 	fixed: boolean = false,
-	container: ContainerConstructor = containerConstructor
-): React.CSSProperties => ({
-	...container(0, 0),
-	...shadowOn(Direction.Right, Blur.Medium),
+	container: ContainerConstructor = containerConstructor,
+	direction: Direction = Direction.Right
+): React.CSSProperties => {
 
-	top: 0,
-	zIndex: fixed ? 50 : 'auto',
-	left: `${rem(theme.SIDENAV_CLOSE_WIDTH - theme.SIDENAV_FULL_WIDTH)}`,
-	minWidth: rem(theme.SIDENAV_FULL_WIDTH),
-	transform: `translateX(${isOpen ? rem(theme.SIDENAV_FULL_WIDTH - theme.SIDENAV_CLOSE_WIDTH) : 0})`,
-	height: '100%',
-	position: fixed ? 'fixed' : 'absolute',
-	transition: '300ms transform ease-in-out'
-})
+	const xTranslation = (theme.SIDENAV_FULL_WIDTH - theme.SIDENAV_CLOSE_WIDTH) / direction
+	// const dirString = dirToCssString(direction);
+	// const cssPosition = { 
+	// 	[dirString]: `${rem(theme.SIDENAV_CLOSE_WIDTH - theme.SIDENAV_FULL_WIDTH)}`
+	// }
+
+	return {
+		...container(0, 0),
+		...shadowOn(direction, Blur.Medium),
+		// ...cssPosition,
+
+		transform: `translateX(${isOpen ? rem(xTranslation) : 0})`,
+
+		top: 0,
+		zIndex: fixed ? 50 : 'auto',
+		minWidth: rem(theme.SIDENAV_FULL_WIDTH),
+		height: '100%',
+		position: fixed ? 'fixed' : 'absolute',
+		transition: '300ms transform ease-in-out'
+	}
+}
 
 const sidenavContentCSS: React.CSSProperties = {
 	...verticalCenter,
@@ -89,7 +100,6 @@ const activeBarCSS = (isActive: boolean): React.CSSProperties => ({
 	height: rem(theme.SIDENAV_ICON_SIZE * 2),
 	backgroundColor: theme.COLOR_BRAND,
 	borderRadius: px(10),
-	// TODO: create a transition mixin to avoid duplications
 	transition: `
 		opacity ${seconds(theme.ANIMATION_SPEED)} ease-in-out,
 		transform ${seconds(theme.ANIMATION_SPEED)} ease-in-out

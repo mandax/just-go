@@ -39,4 +39,6 @@ export default {
 	CARD_IMAGE_STYLE: "square", // square, circle
 	CARD_RADIUS: 10,
 	CARD_PADDING: 1,
+	CARD_DESC_CHAR_LIMIT: 75
+
 };

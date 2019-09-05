@@ -21,7 +21,14 @@ export const fontMedium: FontConstructor = fontBase(theme.FONT_MEDIUM_WEIGHT);
 
 export const fontStrong: FontConstructor = fontBase(theme.FONT_STRONG_WEIGHT);
 
-export const colorByState = (state: boolean):React.CSSProperties => ({
+export const limitChar = (text:string, limit: number): string => {
+  if (text.length > limit) {
+    text = `${text.substring(0, limit)}...`;
+  }
+  return text;
+}
+
+export const colorByState = (state: boolean): React.CSSProperties => ({
   color: state ? theme.COLOR_BRAND : theme.COLOR_PRIMARY
 });
 
@@ -29,6 +36,6 @@ export const titleSpacing = (
   marginTop: number = theme.TITLE_SPACING_TOP,
   marginBottom: number = theme.TITLE_SPACING_BOTTOM
 ): React.CSSProperties => ({
-  marginTop: rem(marginTop), 
+  marginTop: rem(marginTop),
   marginBottom: rem(marginBottom)
 });

@@ -1,22 +1,12 @@
 import * as React from "react";
-import { Children } from "../types";
+import theme from "../theme";
+import { Children, Item } from "../types";
 import { container, containerTransparent } from "../theme/container"
 import { shadow } from "../theme/shadow";
-import { titleSpacing } from "../theme/font";
+import { titleSpacing, limitChar, font } from "../theme/font";
 import { Card, CardImage } from "./Card";
 import { Grid } from "./Grid";
-
-interface Item {
-	id: string
-	created_at: Date
-	modified_by: Date
-	name: string
-	category: string
-	picture: string[]
-	max_discount: number
-	price: number
-	cost: number
-}
+import { Sidenav } from "./Sidenav";
 
 interface State {
 	items: Item[]
@@ -55,7 +45,6 @@ export const Header = (props:HeaderProps) =>
 	(<div style={headerCSS}>{props.children}</div>)
 
 export const HouseMenu = (): React.ReactElement => {
-
 	return (
 		<div>
 			
@@ -70,11 +59,15 @@ export const HouseMenu = (): React.ReactElement => {
 				<Grid columns={8}>
 					<Card>
 						<CardImage src="https://static.olocdn.net/menu/chilis/a30644e222a6f6d261f13b5bf1f0b089.jpg" />
-						<h4>Triple Dipper™</h4>
-						<p>Why choose one when you can choose three? Select three appetizers and enjoy! Served with dipping sauces.</p>
+						<h4 style={titleSpacing(0.8, 0.4)}>Triple Dipper™</h4>
+						<p style={font(0.8)}>{limitChar("Why choose one when you can choose three? Select three appetizers and enjoy! Served with dipping sauces.", theme.CARD_DESC_CHAR_LIMIT)}</p>
 					</Card>
 				</Grid>
 			</div>
+
+			<Sidenav fixed={true}>
+				
+			</Sidenav>
 
 		</div>
 	)

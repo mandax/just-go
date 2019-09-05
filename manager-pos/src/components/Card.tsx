@@ -17,6 +17,7 @@ const cardCSS = (isSelected:boolean): React.CSSProperties => ({
 
 const cardImageCSS = (image: string): React.CSSProperties => ({
 	...roundedBorder(theme.CARD_RADIUS),
+	
 	width: percent(1),
 	margin: '0 auto',
 	height: rem(theme.CARD_IMAGE_HEIGHT),
