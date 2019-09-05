@@ -42,6 +42,8 @@ export default {
 	CARD_RADIUS: 10, // px
 	CARD_PADDING: 1, // rem
 	CARD_DESCRIPTION_SIZE: 0.8, // rem
-	CARD_DESCRIPTION_LIMIT: 75 // chars
+	CARD_DESCRIPTION_LIMIT: 75, // chars,
+	CARD_SELECTED_BORDER_SIZE: 2, // px
+	CARD_SELECTED_EXPAND: 1.1 // 1 is normal scale
 
 };

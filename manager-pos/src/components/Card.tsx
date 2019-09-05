@@ -1,20 +1,41 @@
 import * as React from "react";
 import theme from "../theme";
 import { Children } from "../types";
-import { px, rem, percent } from "../theme/units";
+import { px, rem, percent, seconds } from "../theme/units";
 import { Direction } from "../theme/position";
 import { roundedBorder } from "../theme/container"
-import { shadowOn } from "../theme/shadow";
+import { shadowOn, Blur } from "../theme/shadow";
 
-const cardCSS = (canSelect: boolean, isSelected: boolean): React.CSSProperties => ({
-	...roundedBorder(),
-	...shadowOn(Direction.Down),
+const cardCSS = (canSelect: boolean, isSelected: boolean): React.CSSProperties => {
 
-	cursor: canSelect ? 'pointer' : 'normal',
-	background: theme.COLOR_BASE,
-	padding: rem(theme.CARD_PADDING),
-	borderRadius: px(theme.CARD_RADIUS)
-})
+	const animationSpeed = seconds(theme.ANIMATION_SPEED * 0.6);
+	const selectedCard: React.CSSProperties = {
+		...shadowOn(Direction.Down, Blur.Large),
+		
+		transform: `scale(${theme.CARD_SELECTED_EXPAND})`,
+		borderColor: theme.COLOR_BRAND
+	}
+	
+	return {
+		...roundedBorder(),
+		...shadowOn(Direction.Down),
+		
+		borderWidth: px(theme.CARD_SELECTED_BORDER_SIZE),
+		borderStyle: 'solid',
+		borderColor: theme.COLOR_BASE,
+		cursor: canSelect ? 'pointer' : 'normal',
+		background: theme.COLOR_BASE,
+		padding: rem(theme.CARD_PADDING),
+		borderRadius: px(theme.CARD_RADIUS),
+		transition: `
+			transform ${animationSpeed} ease-in-out,
+			border ${animationSpeed} ease-in-out,
+			box-shadow ${animationSpeed} ease-in-out
+		`,
+
+		...( isSelected ? selectedCard : {} )
+	}
+}
 
 const cardImageCSS = (image: string): React.CSSProperties => ({
 	...roundedBorder(theme.CARD_RADIUS),
