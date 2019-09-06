@@ -1,6 +1,7 @@
 class CreateItems < ActiveRecord::Migration[6.0]
   def change
     create_table :items do |t|
+
       t.string :name, limit: 80
       t.text :description
       t.string :category
