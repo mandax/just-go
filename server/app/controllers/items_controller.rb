@@ -3,7 +3,6 @@ class ItemsController < ActionController::API
 
 		order = params[:orderBy] || 'created_at'
 		sort = params[:sort] || 'desc'
-		group = params[:groupBy]
 		items = []
 		
 		if (Item.available_orders.include?(order)) then
