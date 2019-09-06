@@ -3,21 +3,17 @@
 one:
   name: MyString
   description: MyText
-  category: MyString
-  price: 
-  price: 
+  category: one
+  price: 9.99
   picture: MyString
   max_discount: 1
-  cost: 
-  cost: 
+  cost: 9.99
 
 two:
   name: MyString
   description: MyText
-  category: MyString
-  price: 
-  price: 
+  category: two
+  price: 9.99
   picture: MyString
   max_discount: 1
-  cost: 
-  cost: 
+  cost: 9.99
