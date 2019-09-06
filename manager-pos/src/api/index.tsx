@@ -1,5 +1,4 @@
 import * as qs from 'query-string';
-import { RequestOptions } from 'http';
 
 import { tryFetch, buildJsonRequest } from "./helpers";
 

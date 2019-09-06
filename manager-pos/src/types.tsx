@@ -26,7 +26,7 @@ export interface Items {
 }
 
 export interface NewItem {
-  name: number
+  name: string
   description: string
   category_id: number
   picture: string

@@ -12,7 +12,7 @@ export default {
 	
 	ROUNDED_BORDER: 4, // px
 
-	TITLE_SPACING_TOP: 1, // rem
+	TITLE_SPACING_TOP: 2, // rem
 	TITLE_SPACING_BOTTOM: 1, // rem
 
 	DEFAULT_VERTICAL_PADDING: 2, // rem
@@ -44,6 +44,6 @@ export default {
 	CARD_DESCRIPTION_SIZE: 0.8, // rem
 	CARD_DESCRIPTION_LIMIT: 75, // chars,
 	CARD_SELECTED_BORDER_SIZE: 2, // px
-	CARD_SELECTED_EXPAND: 1.1 // 1 is normal scale
+	CARD_SELECTED_EXPAND: 1.05 // 1 is normal scale
 
 };
