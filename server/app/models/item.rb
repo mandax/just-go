@@ -10,8 +10,4 @@ class Item < ApplicationRecord
 	def self.available_orders
 		['price', 'cost', 'max_discount', 'created_at', 'updated_at'] 
 	end
-	
-	def self.available_groups
-		['category', 'created_at', 'updated_at']
-	end
 end
