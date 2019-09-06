@@ -22,11 +22,19 @@ class ItemsController < ActionController::API
 		render json: item
 	end
 
-	def create
-			
-		permitted_params = params
-			.permit(:name, :category_id, :max_discount, :price, :cost, :description, :picture)
+	def update
+		id = params[:id]
+		item = Item.find(id)
 
+		if item.present? and permitted_params.permitted? then
+			item = Item.update(id, permitted_params)
+			render json: item
+		else
+			render "Was not possible to update this record.", :status => :bad_request
+		end
+	end
+
+	def create		
 		if permitted_params.permitted? then
 			item = Item.create(permitted_params)
 			render json: item
@@ -37,6 +45,11 @@ class ItemsController < ActionController::API
 
 	def destroy
 		Item.delete(params[:id])
+	end
+
+	private
+	def permitted_params
+		params.permit(:id, :name, :category_id, :max_discount, :price, :cost, :description, :picture)
 	end
 
 end
