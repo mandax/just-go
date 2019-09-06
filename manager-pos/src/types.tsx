@@ -8,24 +8,34 @@ export type Children =
   HTMLElement[];
 
 export interface Item {
-  id: string
+  id: number
   created_at: Date
   modified_by: Date
   name: string
   description: string
-  category: string
+  category_id: number
+  category_name: string
   picture: string
   max_discount: number
-  price: number
-  cost: number
+  price: string
+  cost: string
+}
+
+export interface Items {
+  [category_name: string]: Item[]
 }
 
 export interface NewItem {
-  name: string
+  name: number
   description: string
-  category: string
+  category_id: number
   picture: string
   max_discount: number
-  price: number
-  cost: number
+  price: string
+  cost: string
+}
+
+export interface ErrorMessage {
+  status: number,
+  error: string
 }
