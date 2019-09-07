@@ -8,7 +8,7 @@
     "start": "npx lerna run --parallel start",
     "test": "npx lerna run test",
     "clean": "npx lerna clean",
-    "bootstrap": "npx lerna bootstrap & npm run bootstrap:server & npm run bootstrap:db",
+    "bootstrap": "npx lerna bootstrap && npm run bootstrap:server && npm run bootstrap:db",
     "bootstrap:server": "( cd packages/server ; bundle )",
     "bootstrap:db": "( cd packages/server ; rails db:purge db:migrate db:seed )"
   }

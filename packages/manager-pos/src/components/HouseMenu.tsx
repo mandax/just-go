@@ -102,6 +102,7 @@ export const HouseMenu = (): React.ReactElement => {
 				<>
 					{!form ? '' :
 						<>
+							<input type="text" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
 							<h2>{form.name}</h2>
 							<p>{form.max_discount}</p>
 							<p>{form.price} / {form.cost}</p>
