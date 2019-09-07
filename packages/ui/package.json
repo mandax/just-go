@@ -21,7 +21,7 @@
 		"copy-webpack-plugin": "^5.0.4",
 		"enzyme": "^3.10.0",
 		"jest": "^24.9.0",
-		"live-server": "^1.2.1",
+		"servor": "^2.2.1",
 		"source-map-loader": "^0.2.4",
 		"ts-jest": "^24.0.2",
 		"ts-loader": "^6.0.4",

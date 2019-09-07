@@ -2,7 +2,6 @@ import * as React from "react";
 import theme from "../Theme";
 import { Children } from "../types";
 
-import { A } from "hookrouter";
 import { IconType } from "react-icons";
 import { FiMenu, FiX } from "react-icons/fi";
 import { rem, seconds, px } from "../Theme/units";
@@ -23,14 +22,6 @@ export interface SidenavProps {
 	fixed?: boolean
 	alwaysOpen?: boolean
 	container?: ContainerConstructor
-}
-
-export interface SidenavLinkProps {
-	to?: string
-	idx?: number
-	onClick?: Function
-	icon: IconType
-	children?: string
 }
 
 export const Sidenav = (props: SidenavProps) => {
@@ -56,24 +47,36 @@ export const Sidenav = (props: SidenavProps) => {
 	);
 }
 
+export interface SidenavLinkProps {
+	idx?: number
+	onClick?: Function
+	isActive?: boolean
+	icon: IconType
+	children?: string
+}
+
 export const SidenavLink = (props: SidenavLinkProps) => {
 
 	const [isOpen, setOpenState] = React.useContext(SidenavContext);
-	const isActive = window.location.pathname === props.to;
+	const [isActive, setActive] = React.useState(props.isActive);
 
 	const onClickEvent = () => {
 		props.onClick && props.onClick();
 		isOpen && setOpenState(false);
 	}
 
+	React.useEffect(() => {
+		setActive(props.isActive);
+	}, [props.isActive])
+
 	return (
-		<A href={props.to || ''}
+		<button
 			onClick={onClickEvent}
-			style={linkCSS}>
+			style={buttonCSS}>
 			<div style={activeBarCSS(isActive)}></div>
 			<div style={iconCSS(isOpen, isActive)}><props.icon size={rem(theme.SIDENAV_ICON_SIZE)} /></div>
 			<div style={textCSS(isOpen, isActive, props.idx)}>{props.children}</div>
-		</A>
+		</button>
 	);
 } 
 
@@ -105,18 +108,17 @@ const sidenavContentCSS: React.CSSProperties = {
 	width: '100%'
 }
 
-const linkCSS: React.CSSProperties = {
+const buttonCSS: React.CSSProperties = {
 	display: 'block',
 	margin: '1.5rem 0',
 	cursor: 'pointer',
-	position: 'relative',
 	color: theme.COLOR_PRIMARY
 }
 
 const activeBarCSS = (isActive: boolean): React.CSSProperties => ({
 	position: 'absolute',
 	zIndex: -1,
-	top: rem(-theme.SIDENAV_FONT_SIZE / 1.7),
+	marginTop: rem(-theme.SIDENAV_FONT_SIZE / 1.7),
 	right: 0,
 	width: rem(0.2),
 	opacity: isActive ? 1 : 0,

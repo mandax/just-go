@@ -38,27 +38,27 @@ export const Menu = (props: MenuProps): React.ReactElement => {
 	const openForm = (item: MenuForm) => {
 		setForm(item);
 		setContentOpen(true);
-		navigate(`/${item.id}`);
+		navigate(`/menu/${item.id}`);
 	}
 
 	const closeForm = () => {
 		setForm(initialForm);
 		setContentOpen(false);
-		navigate('/');
+		navigate('/menu');
 	}
 
 	const fetchData = async () => {
-		const data = await GetItems();
-		setItems(data as Items);
+		const data = await GetItems() as Items;
+		setItems(data);
 
 		if (props.id) {
-			openForm(getItemById(props.id));
+			openForm(getItemById(Number(props.id), data));
 		}
 	}
 
-	const getItemById = (id: string | number) => Object
-		.values(items).flat()
-		.find((item) => item.id === Number(props.id));
+	const getItemById = (id: number, data: Items) => 
+		Object.values(data).flat()
+		.find((item) => item.id === id);
 
 	React.useEffect(() => {
 		fetchData();
