@@ -15,7 +15,7 @@ end
 		name: Faker::Food.dish,
 		description: Faker::Food.description,
 		category: Category.select(:id).order('RANDOM()').first,
-		picture: "https://loremflickr.com/640/420/food?random=#{i}",
+		picture: "https://loremflickr.com/320/240/food?random=#{i}",
 		max_discount: Faker::Number.within(range: 0..20),
 		price: Faker::Number.decimal(l_digits: 2, r_digits: 2),
 		cost: cost.to_i
