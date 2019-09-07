@@ -1,43 +1,32 @@
 import * as React from "react";
 import Theme from "@justgo/ui/Theme";
+
+import { navigate } from "hookrouter";
 import { Children } from "@justgo/ui/types";
-import { container, containerTransparent } from "@justgo/ui/Theme/container"
+import { GetItems, Items, Item, NewItem } from "@justgo/api/items";
+
 import { shadow } from "@justgo/ui/Theme/shadow";
+import { container, containerTransparent } from "@justgo/ui/Theme/container"
 import { titleSpacing, limitChar, font } from "@justgo/ui/Theme/font";
+import { SideContent } from "@justgo/ui/Components/SideContent";
 import { Card, CardImage } from "@justgo/ui/Components/Card";
 import { Grid } from "@justgo/ui/Components/Grid";
-import { SideContent } from "@justgo/ui/Components/SideContent";
-import { GetItems, Items, Item, NewItem } from "@justgo/api/items";
+import { Input } from "@justgo/ui/Components/Input";
 
 export interface HeaderProps {
 	children: Children
 }
 
-const headerCSS: React.CSSProperties = {
-	...container(),
-	...shadow()
+export interface MenuProps {
+	id?: number
 }
 
-const contentCSS: React.CSSProperties = {
-	...containerTransparent()
-}
+type MenuForm = Item | NewItem | null;
 
 export const Header = (props: HeaderProps) =>
 	(<div style={headerCSS}>{props.children}</div>)
 
-type MenuForm = Item | NewItem | null;
-
-const emptyForm: NewItem = {
-	name: '',
-	description: '',
-	picture: '',
-	category_id: 0,
-	max_discount: 0,
-	price: '0',
-	cost: '0'
-};
-
-export const Menu = (): React.ReactElement => {
+export const Menu = (props: MenuProps): React.ReactElement => {
 
 	const initialForm: MenuForm = null;
 	const initialItems: Items = {};
@@ -49,12 +38,27 @@ export const Menu = (): React.ReactElement => {
 	const openForm = (item: MenuForm) => {
 		setForm(item);
 		setContentOpen(true);
+		navigate(`/${item.id}`);
+	}
+
+	const closeForm = () => {
+		setForm(initialForm);
+		setContentOpen(false);
+		navigate('/');
 	}
 
 	const fetchData = async () => {
 		const data = await GetItems();
 		setItems(data as Items);
+
+		if (props.id) {
+			openForm(getItemById(props.id));
+		}
 	}
+
+	const getItemById = (id: string | number) => Object
+		.values(items).flat()
+		.find((item) => item.id === Number(props.id));
 
 	React.useEffect(() => {
 		fetchData();
@@ -73,15 +77,15 @@ export const Menu = (): React.ReactElement => {
 				{Object.keys(items).map((category, ci) => (
 					<>
 						<h2 style={titleSpacing(4, 2)} key={`cat_${ci}`}>{category}</h2>
-						
+
 						<Grid columns={6}>
-							{items[category].map((item, i) => 
+							{items[category].map((item, i) =>
 								<Card
 									key={`item_${i}`}
 									selected={form === item}
-									onDeselect={() => setContentOpen(false)}
+									onDeselect={() => closeForm()}
 									onSelect={() => openForm(item)}>
-									
+
 									<CardImage src={item.picture} />
 
 									<h4 style={titleSpacing(0.8, 0.4)}>{item.name}</h4>
@@ -97,16 +101,25 @@ export const Menu = (): React.ReactElement => {
 			</div>
 
 			<SideContent open={isContentOpen} >
-				<button onClick={() => setContentOpen(false)}>Close</button>
+				<button onClick={() => closeForm()}>Close</button>
 
 				<>
 					{!form ? '' :
 						<>
-							<input type="text" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
-							<h2>{form.name}</h2>
-							<p>{form.max_discount}</p>
-							<p>{form.price} / {form.cost}</p>
-							<p>{form.description}</p>
+							{['name', 'description', 'price', 'cost', 'max_discount']
+								.map(input =>
+									<Input
+										type="text"
+										label={input}
+										placeholder={input}
+										value={form[input] as string}
+										onChange={(value) => setForm({ ...form, [input]: value })}
+									/>
+								)
+							}
+
+							{/* TODO: picture
+							TODO: category */}
 						</>
 					}
 				</>
@@ -115,3 +128,12 @@ export const Menu = (): React.ReactElement => {
 		</div>
 	)
 };
+
+const headerCSS: React.CSSProperties = {
+	...container(),
+	...shadow()
+}
+
+const contentCSS: React.CSSProperties = {
+	...containerTransparent()
+}

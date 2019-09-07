@@ -9,9 +9,11 @@ export interface Item {
   category_id: number
   category_name: string
   picture: string
-  max_discount: number
+  max_discount: string
   price: string
   cost: string
+
+  [key: string]: string | number | Date
 }
 
 export interface Items {
@@ -23,9 +25,11 @@ export interface NewItem {
   description: string
   category_id: number
   picture: string
-  max_discount: number
+  max_discount: string
   price: string
   cost: string
+
+  [key: string]: string | number
 }
 
 export interface ErrorMessage {
