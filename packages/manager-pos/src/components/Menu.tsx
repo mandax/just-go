@@ -2,29 +2,22 @@ import * as React from "react";
 import Theme from "@justgo/ui/Theme";
 
 import { navigate } from "hookrouter";
-import { Children } from "@justgo/ui/types";
 import { GetItems, Items, Item, NewItem } from "@justgo/api/items";
 
-import { shadow } from "@justgo/ui/Theme/shadow";
-import { container, containerTransparent } from "@justgo/ui/Theme/container"
+import { containerTransparent } from "@justgo/ui/Theme/container"
 import { titleSpacing, limitChar, font } from "@justgo/ui/Theme/font";
 import { SideContent } from "@justgo/ui/Components/SideContent";
 import { Card, CardImage } from "@justgo/ui/Components/Card";
 import { Grid } from "@justgo/ui/Components/Grid";
 import { Input } from "@justgo/ui/Components/Input";
-
-export interface HeaderProps {
-	children: Children
-}
+import { Header } from "@justgo/ui/Components/Header";
+import { Button, ButtonType } from "@justgo/ui/Components/Button";
 
 export interface MenuProps {
 	id?: number
 }
 
 type MenuForm = Item | NewItem | null;
-
-export const Header = (props: HeaderProps) =>
-	(<div style={headerCSS}>{props.children}</div>)
 
 export const Menu = (props: MenuProps): React.ReactElement => {
 
@@ -106,7 +99,9 @@ export const Menu = (props: MenuProps): React.ReactElement => {
 				width={20}
 				open={isContentOpen} >
 
-				<button onClick={() => closeForm()}>Close</button>
+				<Button type={ButtonType.Accent} onClick={() => closeForm()}>Save</Button>
+
+				<Button onClick={() => closeForm()}>Close</Button>
 
 				<div style={formCSS}>
 					{!form ? '' :
@@ -136,11 +131,6 @@ export const Menu = (props: MenuProps): React.ReactElement => {
 
 const formCSS: React.CSSProperties = {
 
-}
-
-const headerCSS: React.CSSProperties = {
-	...container(),
-	...shadow()
 }
 
 const contentCSS: React.CSSProperties = {

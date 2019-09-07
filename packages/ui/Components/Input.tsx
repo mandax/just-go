@@ -3,7 +3,7 @@ import Theme from '../Theme';
 
 import { roundedBorder } from '../Theme/container';
 import { font, fontStrong } from '../Theme/font';
-import { rem, px, percent } from '../Theme/units';
+import { em, rem, px, percent } from '../Theme/units';
 
 export interface InputProps {
   type: string,
@@ -40,13 +40,14 @@ export const Input = (props: InputProps) => {
 };
 
 const wrapperCSS = (): React.CSSProperties => ({
-  fontSize: px(16 * Theme.FORM_SCALE),
+  fontSize: px(Theme.DEFAULT_REM_SIZE * Theme.FORM_SCALE),
   width: percent(1),  
 })
 
 const labelCSS = (): React.CSSProperties => ({
   ...font(1, Theme.FONT_CONDENSED),
 
+  fontSize: em(1),  
   padding: `0 ${rem(Theme.INPUT_SIDE_PADDING)}`,
   display: 'block',
   textTransform: 'capitalize'
@@ -57,8 +58,10 @@ const inputCSS = (): React.CSSProperties => ({
   ...fontStrong(),
 
   width: percent(1),  
-  padding: `${rem(Theme.INPUT_TOP_BOTTOM_PADDING)} ${rem(Theme.INPUT_SIDE_PADDING)}`,
-  borderWidth: px(1),
+  fontSize: em(1),
+  padding: `${em(Theme.INPUT_TOP_BOTTOM_PADDING)} ${em(Theme.INPUT_SIDE_PADDING)}`,
+  marginBottom: em(Theme.INPUT_BOTTOM_MARGIN),
+  borderWidth: px(Theme.INPUT_BORDER_WIDTH),
   borderStyle: 'solid',
   borderColor: Theme.COLOR_BASE,
   background: Theme.COLOR_BASE

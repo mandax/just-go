@@ -1,17 +1,21 @@
 import Theme from '../Theme';
 
-export const seconds = (num: number): string => `${num}s`;
+export type UnitTransformer = (num: number) => number;
 
-export const px = (num: number): string => `${num}px`;
+export type NumberToCSSUnit = (num: number) => string;
 
-export const vw = (num: number): string => `${num}vw`;
+export const seconds: NumberToCSSUnit = (num: number): string => `${num}s`;
 
-export const vh = (num: number): string => `${num}vh`;
+export const px: NumberToCSSUnit = (num: number): string => `${num}px`;
 
-export const em = (num: number): string => `${num}em`;
+export const vw: NumberToCSSUnit = (num: number): string => `${num}vw`;
 
-export const rem = (num: number): string => `${num}rem`;
+export const vh: NumberToCSSUnit = (num: number): string => `${num}vh`;
 
-export const percent = (num: number): string => `${num * 100}%`;
+export const em: NumberToCSSUnit = (num: number): string => `${num}em`;
 
-export const remToPx = (rem: number): number => rem * Theme.DEFAULT_REM_SIZE;
+export const rem: NumberToCSSUnit = (num: number): string => `${num}rem`;
+
+export const percent: NumberToCSSUnit = (num: number): string => `${num * 100}%`;
+
+export const remToPx: UnitTransformer = (rem: number): number => rem * Theme.DEFAULT_REM_SIZE;
