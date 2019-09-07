@@ -3,6 +3,8 @@ export default {
 
 	ANIMATION_SPEED: 0.3, // seconds
 
+	DEFAULT_REM_SIZE: 16, //px
+
 	FONT_PRIMARY: 'Manjari',
 	FONT_CONDENSED: 'Barlow Condensed',
 	FONT_DEFAULT_SIZE: 1, // rem
@@ -30,7 +32,7 @@ export default {
 	COLOR_PRIMARY: '#263238',
 	COLOR_BRAND: '#F4511E',
 	
-	SHADOWS_ENABLED: false,
+	SHADOWS_ENABLED: true,
 	SHADOW_BLUR: 8, // rem
 	SHADOW_OFFSET: 2, // rem
 	SHADOW_COLOR: 'rgba(0, 0, 0, 0.1)',
@@ -43,6 +45,10 @@ export default {
 	CARD_DESCRIPTION_SIZE: 0.8, // rem
 	CARD_DESCRIPTION_LIMIT: 75, // chars,
 	CARD_SELECTED_BORDER_SIZE: 2, // px
-	CARD_SELECTED_EXPAND: 1.05 // 1 is normal scale
+	CARD_SELECTED_EXPAND: 1.05, // 1 is normal scale
+	
+	FORM_SCALE: 0.2,
+	INPUT_TOP_BOTTOM_PADDING: 0.5,
+	INPUT_SIDE_PADDING: 0.5
 
 };

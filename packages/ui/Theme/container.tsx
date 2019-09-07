@@ -33,6 +33,10 @@ export const verticalCenter: React.CSSProperties = {
   transform: 'translateY(-50%)'
 };
 
+export const horizontalCenter: React.CSSProperties = {
+  margin: `0 auto`
+};
+
 export const roundedBorder = (
   defaultOrtopLeftBorder: number = theme.ROUNDED_BORDER,
   topRightBorder?: number,

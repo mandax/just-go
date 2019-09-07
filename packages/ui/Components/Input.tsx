@@ -2,7 +2,8 @@ import * as React from 'react';
 import Theme from '../Theme';
 
 import { roundedBorder } from '../Theme/container';
-import { rem } from '../Theme/units';
+import { font, fontStrong } from '../Theme/font';
+import { rem, px, percent } from '../Theme/units';
 
 export interface InputProps {
   type: string,
@@ -17,8 +18,7 @@ export const Input = (props: InputProps) => {
   const [value, setValue] = React.useState();
 
   const makeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
-    props.onChange && props.onChange(value);
+    props.onChange && props.onChange(event.target.value);
   };
 
   React.useEffect(() => {
@@ -40,16 +40,26 @@ export const Input = (props: InputProps) => {
 };
 
 const wrapperCSS = (): React.CSSProperties => ({
-
+  fontSize: px(16 * Theme.FORM_SCALE),
+  width: percent(1),  
 })
 
 const labelCSS = (): React.CSSProperties => ({
-  fontStyle: 'capitalize'
+  ...font(1, Theme.FONT_CONDENSED),
+
+  padding: `0 ${rem(Theme.INPUT_SIDE_PADDING)}`,
+  display: 'block',
+  textTransform: 'capitalize'
 })
 
 const inputCSS = (): React.CSSProperties => ({
-  ...roundedBorder(),
+  ...roundedBorder(5),
+  ...fontStrong(),
 
-  padding: rem(1),
+  width: percent(1),  
+  padding: `${rem(Theme.INPUT_TOP_BOTTOM_PADDING)} ${rem(Theme.INPUT_SIDE_PADDING)}`,
+  borderWidth: px(1),
+  borderStyle: 'solid',
+  borderColor: Theme.COLOR_BASE,
   background: Theme.COLOR_BASE
-})
+});

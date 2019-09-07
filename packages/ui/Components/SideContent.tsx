@@ -2,7 +2,7 @@ import * as React from "react";
 import theme from "../Theme";
 
 import { Children } from "../types";
-import { seconds, percent, vw } from "../Theme/units";
+import { seconds, percent, vw, rem } from "../Theme/units";
 import { Direction } from "../Theme/position";
 import { shadowOn, Blur } from "../Theme/shadow";
 
@@ -11,29 +11,10 @@ import {
   ContainerConstructor,
 } from "../Theme/container";
 
-const sideContentCSS = (
-  isOpen: boolean,
-  container: ContainerConstructor = containerConstructor
-): React.CSSProperties => {
-
-  return {
-    ...container(),
-    ...shadowOn(Direction.Left, Blur.Medium),
-
-    width: vw(50),
-    right: `${vw(-(theme.SIDECONTENT_WIDTH + theme.DEFAULT_HORIZONTAL_PADDING * 2))}`,
-    top: 0,
-    zIndex: 51,
-    height: percent(1),
-    position: 'fixed',
-    transform: `translateX(${isOpen ? vw(-theme.SIDECONTENT_WIDTH) : 0})`,
-    transition: `${seconds(theme.ANIMATION_SPEED)} transform ease-in-out`
-  }
-}
-
 export interface SideContentProps {
   children: Children
   open: boolean
+  width?: number
   container?: ContainerConstructor
 }
 
@@ -47,8 +28,31 @@ export const SideContent = (props: SideContentProps) => {
   }, [props.open])
 
   return (
-    <div style={sideContentCSS(isOpen, container)}>
+    <div style={sideContentCSS(props.width, isOpen, container)}>
       {children}
     </div>
   );
+}
+
+const sideContentCSS = (
+  width: number = theme.SIDECONTENT_WIDTH,
+  isOpen: boolean,
+  container: ContainerConstructor = containerConstructor
+): React.CSSProperties => {
+
+  const xTranslationOpen = `calc(${vw(-width)} - ${rem(theme.DEFAULT_HORIZONTAL_PADDING * 2)})`;
+
+  return {
+    ...container(),
+    ...shadowOn(Direction.Left, Blur.Medium),
+
+    width: vw(width),
+    left: percent(1),
+    top: 0,
+    zIndex: 51,
+    height: percent(1),
+    position: 'fixed',
+    transform: `translateX(${isOpen ? xTranslationOpen : 0})`,
+    transition: `${seconds(theme.ANIMATION_SPEED)} transform ease-in-out`
+  }
 }

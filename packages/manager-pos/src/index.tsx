@@ -44,7 +44,7 @@ const App = (): React.ReactElement => {
   const navigateTo = (path: string) => () => navigate(path);
 
   return (
-    <div id="main">
+    <div id="main" style={mainCSS}>
 
       <Sidenav fixed={true}>
         {sidenavLinks.map((link, i) => 
@@ -58,7 +58,7 @@ const App = (): React.ReactElement => {
       )}
       </Sidenav>
 
-      <div style={mainCSS}>
+      <div style={mainContentCSS}>
         {routeResult || unknownRoute()}
       </div>
     </div>
@@ -66,6 +66,10 @@ const App = (): React.ReactElement => {
 };
 
 const mainCSS: React.CSSProperties = {
+  fontSize: Theme.DEFAULT_REM_SIZE
+}
+
+const mainContentCSS: React.CSSProperties = {
   minHeight: vh(100),
   paddingLeft: `${rem(Theme.SIDENAV_CLOSE_WIDTH)}`,
   background: Theme.COLOR_BASE_2

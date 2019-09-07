@@ -60,6 +60,8 @@ export const Menu = (props: MenuProps): React.ReactElement => {
 		Object.values(data).flat()
 		.find((item) => item.id === id);
 
+	const isSelected = (item: Item): boolean => form && form.id === item.id;
+
 	React.useEffect(() => {
 		fetchData();
 	}, []);
@@ -82,7 +84,7 @@ export const Menu = (props: MenuProps): React.ReactElement => {
 							{items[category].map((item, i) =>
 								<Card
 									key={`item_${i}`}
-									selected={form === item}
+									selected={isSelected(item)}
 									onDeselect={() => closeForm()}
 									onSelect={() => openForm(item)}>
 
@@ -100,10 +102,13 @@ export const Menu = (props: MenuProps): React.ReactElement => {
 
 			</div>
 
-			<SideContent open={isContentOpen} >
+			<SideContent 
+				width={20}
+				open={isContentOpen} >
+
 				<button onClick={() => closeForm()}>Close</button>
 
-				<>
+				<div style={formCSS}>
 					{!form ? '' :
 						<>
 							{['name', 'description', 'price', 'cost', 'max_discount']
@@ -122,12 +127,16 @@ export const Menu = (props: MenuProps): React.ReactElement => {
 							TODO: category */}
 						</>
 					}
-				</>
+				</div>
 			</SideContent>
 
 		</div>
 	)
 };
+
+const formCSS: React.CSSProperties = {
+
+}
 
 const headerCSS: React.CSSProperties = {
 	...container(),
