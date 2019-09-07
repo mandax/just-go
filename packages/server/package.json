@@ -1,0 +1,24 @@
+{
+  "name": "@justgo/server",
+  "version": "0.1.0",
+  "description": "The Server",
+  "main": "Rakefile",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "rails test",
+    "start": "rails server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/mandax/just-go.git"
+  },
+  "author": "Anderson F. Pinto (mandax)",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://gitlab.com/mandax/just-go/issues"
+  },
+  "homepage": "https://gitlab.com/mandax/just-go#readme"
+}

@@ -1,5 +1,5 @@
 {
-  "name": "manager-pos",
+  "name": "@justgo/manager-pos",
   "version": "0.1.0",
   "description": "Restaurant Manager and Point Of Sail App",
   "main": "index.html",

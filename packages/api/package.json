@@ -4,7 +4,7 @@
   "description": "TypeScript Api interface",
   "main": "index.tsx",
   "scripts": {
-    "test": "npm run test"
+    "test": "npx jest"
   },
   "repository": {
     "type": "git",
@@ -22,9 +22,10 @@
   },
   "homepage": "https://gitlab.com/mandax/just-go#readme",
   "dependencies": {
+    "@types/jest": "^24.0.18",
+    "@types/query-string": "^6.3.0",
+    "ts-jest": "^24.0.2",
+    "jest": "^24.9.0",
     "query-string": "^6.8.3"
-  },
-  "devDependencies": {
-    "@types/query-string": "^6.3.0"
   }
 }
