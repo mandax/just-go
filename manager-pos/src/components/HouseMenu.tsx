@@ -1,15 +1,13 @@
 import * as React from "react";
 import theme from "../theme";
-import { FiPlusCircle } from "react-icons/fi";
-import { Children, Items, Item, NewItem } from "../types";
+import { Children } from "../types";
 import { container, containerTransparent } from "../theme/container"
 import { shadow } from "../theme/shadow";
 import { titleSpacing, limitChar, font } from "../theme/font";
 import { Card, CardImage } from "./Card";
 import { Grid } from "./Grid";
 import { SideContent } from "./SideContent";
-import { rem } from "../theme/units";
-import { GetItems } from "../api/items";
+import { GetItems, Items, Item, NewItem } from "@justgo/api/items";
 
 export interface HeaderProps {
 	children: Children

@@ -1,7 +1,7 @@
 {
   "name": "manager-pos",
-  "version": "1.0.0",
-  "description": "Manager and Point Of Sail App",
+  "version": "0.1.0",
+  "description": "Restaurant Manager and Point Of Sail App",
   "main": "index.html",
   "repository": {
     "type": "git",
@@ -47,6 +47,7 @@
     "webpack-cli": "^3.3.7"
   },
   "dependencies": {
+    "@justgo/api": "gitlab:mandax/justgo/api#v0.1.0",
     "hookrouter": "^1.2.3",
     "query-string": "^6.8.3",
     "react": "^16.9.0",

@@ -1,6 +1,9 @@
-import { ErrorMessage } from "../types";
-
 const SUCCESS_STATUS = [200, 201, 203];
+
+export interface ErrorMessage {
+  status: number,
+  error: string
+}
 
 const sendError = async (response: Response): Promise<ErrorMessage> => ({
   status: response.status,

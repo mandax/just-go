@@ -1,0 +1,30 @@
+{
+  "name": "@justgo/api",
+  "version": "0.1.0",
+  "description": "TypeScript Api interface",
+  "main": "index.tsx",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/mandax/just-go.git"
+  },
+  "keywords": [
+    "api",
+    "justgo",
+    "typescript"
+  ],
+  "author": "Anderson F. Pinto (mandax)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/mandax/just-go/issues"
+  },
+  "homepage": "https://gitlab.com/mandax/just-go#readme",
+  "dependencies": {
+    "query-string": "^6.8.3"
+  },
+  "devDependencies": {
+    "@types/query-string": "^6.3.0"
+  }
+}
