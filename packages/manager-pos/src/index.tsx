@@ -31,10 +31,7 @@ const sidenavLinks: SidenavLinks[] = [
   { name: 'Test', path: '/test', icon: FiPaperclip }
 ]
 
-const unknownRoute = () => {
-  console.log('Routed to unknown: ' + Date.now());
-  return Date.now();
-}
+const notFound = () => <div>Ops.</div>;
 
 const App = (): React.ReactElement => {
   const routeResult = useRoutes(routes);
@@ -59,7 +56,7 @@ const App = (): React.ReactElement => {
       </Sidenav>
 
       <div style={mainContentCSS}>
-        {routeResult || unknownRoute()}
+        {routeResult || notFound()}
       </div>
     </div>
   )

@@ -1,4 +1,4 @@
-import { Get, Delete, PutJSON } from "./base";
+import { Get, Delete, PutJSON, PostJSON } from "./base";
 
 export interface Item {
   id: number
@@ -42,6 +42,8 @@ export const GetItem = (id: number) => Get<Item>(`/items/${id}`);
 
 export const GetItems = () => Get<Items>('/items');
 
-export const UpdateItem = (id: number, body: NewItem) => PutJSON<NewItem, Item>(`/items/${id}`, body);
+export const CreateItem = (id: number, body: NewItem) => PostJSON<NewItem, Item>('/items', body);
+
+export const UpdateItem = (id: number, body: Item) => PutJSON<Item, Item>(`/items/${id}`, body);
 
 export const DeleteItem = (id: number) => Delete(`/items/${id}`);
