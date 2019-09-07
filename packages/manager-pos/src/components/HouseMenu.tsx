@@ -1,12 +1,12 @@
 import * as React from "react";
-import theme from "../theme";
-import { Children } from "../types";
-import { container, containerTransparent } from "../theme/container"
-import { shadow } from "../theme/shadow";
-import { titleSpacing, limitChar, font } from "../theme/font";
-import { Card, CardImage } from "./Card";
-import { Grid } from "./Grid";
-import { SideContent } from "./SideContent";
+import Theme from "@justgo/ui/Theme";
+import { Children } from "@justgo/ui/types";
+import { container, containerTransparent } from "@justgo/ui/Theme/container"
+import { shadow } from "@justgo/ui/Theme/shadow";
+import { titleSpacing, limitChar, font } from "@justgo/ui/Theme/font";
+import { Card, CardImage } from "@justgo/ui/Components/Card";
+import { Grid } from "@justgo/ui/Components/Grid";
+import { SideContent } from "@justgo/ui/Components/SideContent";
 import { GetItems, Items, Item, NewItem } from "@justgo/api/items";
 
 export interface HeaderProps {
@@ -85,8 +85,8 @@ export const HouseMenu = (): React.ReactElement => {
 									<CardImage src={item.picture} />
 
 									<h4 style={titleSpacing(0.8, 0.4)}>{item.name}</h4>
-									<p style={font(theme.CARD_DESCRIPTION_SIZE)}>
-										{limitChar(item.description, theme.CARD_DESCRIPTION_LIMIT)}
+									<p style={font(Theme.CARD_DESCRIPTION_SIZE)}>
+										{limitChar(item.description, Theme.CARD_DESCRIPTION_LIMIT)}
 									</p>
 								</Card>
 							)}

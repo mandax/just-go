@@ -2,17 +2,18 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { useRoutes } from "hookrouter";
 import { FiHome, FiPaperclip, FiBookOpen } from "react-icons/fi";
+import { Sidenav, SidenavLink } from '@justgo/ui/Components/Sidenav'
+import { vh, rem } from "@justgo/ui/Theme/units";
 
-import { Sidenav, SidenavLink } from './components/Sidenav'
-import theme from "./theme";
+import Theme from "@justgo/ui/Theme";
+
 import { Hello } from "./components/Hello";
 import { HouseMenu } from "./components/HouseMenu";
-import { vh, rem, percent } from "./theme/units";
 
 const mainCSS:React.CSSProperties = {
   minHeight: vh(100),
-  paddingLeft: `${rem(theme.SIDENAV_CLOSE_WIDTH)}`,
-  background: theme.COLOR_BASE_2
+  paddingLeft: `${rem(Theme.SIDENAV_CLOSE_WIDTH)}`,
+  background: Theme.COLOR_BASE_2
 }
 
 const routes = {

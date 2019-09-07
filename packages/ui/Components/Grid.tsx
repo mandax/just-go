@@ -1,6 +1,6 @@
 import * as React from "react";
-import theme from "../theme";
-import { rem } from "../theme/units";
+import theme from "../Theme";
+import { rem } from "../Theme/units";
 import { Children } from "../types";
 
 const gridCSS = (columns: number = 2): React.CSSProperties => ({

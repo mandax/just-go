@@ -1,15 +1,15 @@
 import * as React from "react";
-import theme from "../theme";
+import theme from "../Theme";
 
 import { Children } from "../types";
-import { rem, seconds, percent, vw } from "../theme/units";
-import { Direction } from "../theme/position";
-import { shadowOn, Blur } from "../theme/shadow";
+import { seconds, percent, vw } from "../Theme/units";
+import { Direction } from "../Theme/position";
+import { shadowOn, Blur } from "../Theme/shadow";
 
 import {
   container as containerConstructor,
   ContainerConstructor,
-} from "../theme/container";
+} from "../Theme/container";
 
 const sideContentCSS = (
   isOpen: boolean,

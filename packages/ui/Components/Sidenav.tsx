@@ -1,20 +1,20 @@
 import * as React from "react";
-import theme from "../theme";
+import theme from "../Theme";
 import { Children } from "../types";
 
 import { A } from "hookrouter";
 import { IconType } from "react-icons";
 import { FiMenu, FiX } from "react-icons/fi";
-import { rem, seconds, px } from "../theme/units";
-import { Direction, dirToCssString } from "../theme/position";
-import { colorByState, fontMedium } from "../theme/font";
-import { shadowOn, Blur } from "../theme/shadow";
+import { rem, seconds, px } from "../Theme/units";
+import { Direction, dirToCssString } from "../Theme/position";
+import { colorByState, fontMedium } from "../Theme/font";
+import { shadowOn, Blur } from "../Theme/shadow";
 
 import {
 	container as containerConstructor,
 	ContainerConstructor,
 	verticalCenter
-} from "../theme/container";
+} from "../Theme/container";
 
 const sidenavCSS = (
 	isOpen: boolean,

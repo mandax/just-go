@@ -48,6 +48,7 @@
   },
   "dependencies": {
     "@justgo/api": "gitlab:mandax/justgo/api#v0.1.0",
+    "@justgo/ui": "gitlab:mandax/justgo/ui#v0.1.0",
     "hookrouter": "^1.2.3",
     "query-string": "^6.8.3",
     "react": "^16.9.0",

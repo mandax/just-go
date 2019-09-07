@@ -1,31 +1,28 @@
 {
-  "name": "@justgo/api",
-  "version": "0.1.0",
-  "description": "TypeScript Api interface",
-  "main": "index.tsx",
-  "scripts": {
-    "test": "npx jest"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://gitlab.com/mandax/just-go.git"
-  },
-  "keywords": [
-    "api",
-    "justgo",
-    "typescript"
-  ],
-  "author": "Anderson F. Pinto (mandax)",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://gitlab.com/mandax/just-go/issues"
-  },
-  "homepage": "https://gitlab.com/mandax/just-go#readme",
-  "dependencies": {
-    "@types/jest": "^24.0.18",
-    "@types/query-string": "^6.3.0",
-    "ts-jest": "^24.0.2",
-    "jest": "^24.9.0",
-    "query-string": "^6.8.3"
-  }
+	"name": "@justgo/api",
+	"version": "0.1.0",
+	"description": "TypeScript Api interface",
+	"main": "index.tsx",
+	"repository": {
+		"type": "git",
+		"url": "git+https://gitlab.com/mandax/just-go.git"
+	},
+	"keywords": [
+		"api",
+		"justgo",
+		"typescript"
+	],
+	"author": "Anderson F. Pinto (mandax)",
+	"license": "UNLICENSED",
+	"bugs": {
+		"url": "https://gitlab.com/mandax/just-go/issues"
+	},
+	"homepage": "https://gitlab.com/mandax/just-go#readme",
+	"dependencies": {
+		"@types/jest": "^24.0.18",
+		"@types/query-string": "^6.3.0",
+		"jest": "^24.9.0",
+		"query-string": "^6.8.3",
+		"ts-jest": "^24.0.2"
+	}
 }

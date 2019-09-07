@@ -1,10 +1,10 @@
 import * as React from "react";
-import theme from "../theme";
+import theme from "../Theme";
 import { Children } from "../types";
-import { px, rem, percent, seconds } from "../theme/units";
-import { Direction } from "../theme/position";
-import { roundedBorder } from "../theme/container"
-import { shadowOn, Blur } from "../theme/shadow";
+import { px, rem, percent, seconds } from "../Theme/units";
+import { Direction } from "../Theme/position";
+import { roundedBorder } from "../Theme/container"
+import { shadowOn, Blur } from "../Theme/shadow";
 
 const cardCSS = (canSelect: boolean, isSelected: boolean): React.CSSProperties => {
 
