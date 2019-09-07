@@ -6,7 +6,7 @@ import { A } from "hookrouter";
 import { IconType } from "react-icons";
 import { FiMenu, FiX } from "react-icons/fi";
 import { rem, seconds, px } from "../Theme/units";
-import { Direction, dirToCssString } from "../Theme/position";
+import { Direction } from "../Theme/position";
 import { colorByState, fontMedium } from "../Theme/font";
 import { shadowOn, Blur } from "../Theme/shadow";
 
@@ -15,6 +15,67 @@ import {
 	ContainerConstructor,
 	verticalCenter
 } from "../Theme/container";
+
+const SidenavContext = React.createContext([]);
+
+export interface SidenavProps {
+	children: Children
+	fixed?: boolean
+	alwaysOpen?: boolean
+	container?: ContainerConstructor
+}
+
+export interface SidenavLinkProps {
+	to?: string
+	idx?: number
+	onClick?: Function
+	icon: IconType
+	children?: string
+}
+
+export const Sidenav = (props: SidenavProps) => {
+
+	const [isOpen, setOpenState] = React.useState(props.alwaysOpen);
+	const { children, fixed, container, alwaysOpen } = props;
+
+	return (
+		<SidenavContext.Provider value={[isOpen, setOpenState]}>
+			<div style={sidenavCSS(isOpen, fixed, container)}>
+
+				{alwaysOpen ? '' : <SidenavLink
+					icon={isOpen ? FiX : FiMenu}
+					onClick={() => setOpenState(!isOpen)}>
+					Close
+				</SidenavLink>}
+
+				<div style={sidenavContentCSS}>
+					{children}
+				</div>
+			</div>
+		</SidenavContext.Provider>
+	);
+}
+
+export const SidenavLink = (props: SidenavLinkProps) => {
+
+	const [isOpen, setOpenState] = React.useContext(SidenavContext);
+	const isActive = window.location.pathname === props.to;
+
+	const onClickEvent = () => {
+		props.onClick && props.onClick();
+		isOpen && setOpenState(false);
+	}
+
+	return (
+		<A href={props.to || ''}
+			onClick={onClickEvent}
+			style={linkCSS}>
+			<div style={activeBarCSS(isActive)}></div>
+			<div style={iconCSS(isOpen, isActive)}><props.icon size={rem(theme.SIDENAV_ICON_SIZE)} /></div>
+			<div style={textCSS(isOpen, isActive, props.idx)}>{props.children}</div>
+		</A>
+	);
+} 
 
 const sidenavCSS = (
 	isOpen: boolean,
@@ -42,38 +103,6 @@ const sidenavCSS = (
 const sidenavContentCSS: React.CSSProperties = {
 	...verticalCenter,
 	width: '100%'
-}
-
-const SidenavContext = React.createContext([]);
-
-export interface SidenavProps {
-	children: Children
-	fixed?: boolean
-	alwaysOpen?: boolean
-	container?: ContainerConstructor
-}
-
-export const Sidenav = (props: SidenavProps) => {
-
-	const [isOpen, setOpenState] = React.useState(props.alwaysOpen);
-	const { children, fixed, container, alwaysOpen } = props;
-
-	return (
-		<SidenavContext.Provider value={[isOpen, setOpenState]}>
-			<div style={sidenavCSS(isOpen, fixed, container)}>
-
-				{alwaysOpen ? '' : <SidenavLink
-					icon={isOpen ? FiX : FiMenu}
-					onClick={() => setOpenState(!isOpen)}>
-					Close
-				</SidenavLink>}
-
-				<div style={sidenavContentCSS}>
-					{children}
-				</div>
-			</div>
-		</SidenavContext.Provider>
-	);
 }
 
 const linkCSS: React.CSSProperties = {
@@ -139,32 +168,3 @@ const iconCSS = (isOpen: boolean, isActive: boolean): React.CSSProperties => {
 		`
 	}
 }
-
-export interface SidenavLinkProps {
-	to?: string
-	idx?: number
-	onClick?: Function
-	icon: IconType
-	children?: string
-}
-
-export const SidenavLink = (props: SidenavLinkProps) => {
-
-	const [isOpen, setOpenState] = React.useContext(SidenavContext);
-	const isActive = window.location.pathname === props.to;
-
-	const onClickEvent = () => {
-		props.onClick && props.onClick();
-		isOpen && setOpenState(false);
-	}
-
-	return (
-		<A href={props.to || ''}
-			onClick={onClickEvent}
-			style={linkCSS}>
-			<div style={activeBarCSS(isActive)}></div>
-			<div style={iconCSS(isOpen, isActive)}><props.icon size={rem(theme.SIDENAV_ICON_SIZE)} /></div>
-			<div style={textCSS(isOpen, isActive, props.idx)}>{props.children}</div>
-		</A>
-	);
-} 

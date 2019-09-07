@@ -1,6 +1,6 @@
 import { CSSProperties } from "react";
 import theme from "./index";
-import { rem, px, percent } from "./units";
+import { rem } from "./units";
 import { font } from "./font";
 
 export type ContainerConstructor =

@@ -17,11 +17,11 @@
     "manager"
   ],
   "scripts": {
-    "start": "npx webpack --watch & npx live-server ./dist --port 8080 --quiet --watch ./dist --no-browser",
-    "test": "npx jest",
-    "test:watch": "npx jest:watch",
-    "build": "npx webpack",
-    "build:production": "NODE_ENV=production npx webpack"
+    "start": "webpack --watch & servor ./dist index.html 8080 --no-browser",
+    "test": "jest",
+    "test:watch": "jest:watch",
+    "build": "webpack",
+    "build:production": "NODE_ENV=production npm run build"
   },
   "author": "Anderson Ferreira Pinto (Mandax)",
   "license": "UNLICENSED",
@@ -38,7 +38,7 @@
     "copy-webpack-plugin": "^5.0.4",
     "enzyme": "^3.10.0",
     "jest": "^24.9.0",
-    "live-server": "^1.2.1",
+    "servor": "^2.2.1",
     "source-map-loader": "^0.2.4",
     "ts-jest": "^24.0.2",
     "ts-loader": "^6.0.4",

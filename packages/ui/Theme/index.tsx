@@ -38,7 +38,6 @@ export default {
 	GRID_DEFAULT_GAP: 1, // rem
 
 	CARD_IMAGE_HEIGHT: 10, // rem
-	CARD_IMAGE_STYLE: "square", // square, circle
 	CARD_RADIUS: 10, // px
 	CARD_PADDING: 1, // rem
 	CARD_DESCRIPTION_SIZE: 0.8, // rem
