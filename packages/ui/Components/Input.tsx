@@ -1,6 +1,8 @@
 import * as React from 'react';
 import Theme from '../Theme';
+
 import { roundedBorder } from '../Theme/container';
+import { rem } from '../Theme/units';
 
 export interface InputProps {
   type: string,
@@ -48,5 +50,6 @@ const labelCSS = (): React.CSSProperties => ({
 const inputCSS = (): React.CSSProperties => ({
   ...roundedBorder(),
 
+  padding: rem(1),
   background: Theme.COLOR_BASE
 })
