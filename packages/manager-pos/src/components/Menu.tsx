@@ -37,7 +37,7 @@ const emptyForm: NewItem = {
 	cost: '0'
 };
 
-export const HouseMenu = (): React.ReactElement => {
+export const Menu = (): React.ReactElement => {
 
 	const initialForm: MenuForm = null;
 	const initialItems: Items = {};
