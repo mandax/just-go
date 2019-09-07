@@ -8,6 +8,7 @@ import { em, rem, px, percent } from '../Theme/units';
 export interface InputProps {
   type: string,
   label?: string,
+  focus?: boolean,
   value?: string | number,
   placeholder?: string,
   onChange?: (value: string, isValid?: boolean) => any
@@ -16,10 +17,17 @@ export interface InputProps {
 export const Input = (props: InputProps) => {
 
   const [value, setValue] = React.useState();
+  const inputRef = React.useRef(null);
 
   const makeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     props.onChange && props.onChange(event.target.value);
   };
+
+  React.useEffect(() => {
+    if (props.focus) {
+      inputRef.current.focus();
+    }
+  }, [])
 
   React.useEffect(() => {
     props.value && setValue(props.value);
@@ -29,6 +37,7 @@ export const Input = (props: InputProps) => {
     <div style={wrapperCSS()}>
       {props.label ? <label style={labelCSS()}>{props.label}</label> : ''}
       <input
+        ref={inputRef}
         style={inputCSS()}
         value={value}
         onChange={makeChange}
