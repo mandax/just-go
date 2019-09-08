@@ -12,23 +12,21 @@ import { Hello } from "./components/Hello";
 import { Menu, MenuProps } from "./components/Menu";
 import { IconType } from "react-icons/lib/cjs";
 
-const routes = {
-  '/': () => <Hello />,
-  '/menu': () => <Menu />,
-  '/menu/:id': ({ id }: MenuProps) => <Menu id={id} />,
-  '/test': () => <Hello />
-};
-
 interface SidenavLinks {
   name: string
   path: string
   icon: IconType
 }
 
+const routes = {
+  '/': () => <Hello />,
+  '/menu': () => <Menu />,
+  '/menu/:id': ({ id }: MenuProps) => <Menu id={id} />
+};
+
 const sidenavLinks: SidenavLinks[] = [
   { name: 'Home', path: '/', icon: FiHome },
-  { name: 'Menu', path: '/menu', icon: FiBookOpen },
-  { name: 'Test', path: '/test', icon: FiPaperclip }
+  { name: 'Menu', path: '/menu', icon: FiBookOpen }
 ]
 
 const notFound = () => <div>Ops.</div>;

@@ -3,6 +3,10 @@
 	"version": "0.1.0",
 	"description": "ui components",
 	"main": "index.tsx",
+	"scripts": {
+		"test": "jest",
+		"test:watch": "jest --watch"
+	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://gitlab.com/mandax/just-go.git"

@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`helper container should generate a default container 1`] = `
+Object {
+  "backgroundColor": "#FFFFFF",
+  "color": "#263238",
+  "fontFamily": "Manjari",
+  "fontSize": "1rem",
+  "fontWeight": 400,
+  "padding": "2rem 3rem",
+}
+`;
+
+exports[`helper container should generate a new color container 1`] = `
+Object {
+  "backgroundColor": "blue",
+  "color": "red",
+  "fontFamily": "Manjari",
+  "fontSize": "1rem",
+  "fontWeight": 400,
+  "padding": "2rem 3rem",
+}
+`;
+
+exports[`helper container should generate a new side padding container 1`] = `
+Object {
+  "backgroundColor": "#FFFFFF",
+  "color": "#263238",
+  "fontFamily": "Manjari",
+  "fontSize": "1rem",
+  "fontWeight": 400,
+  "padding": "2rem 2rem",
+}
+`;
+
+exports[`helper container should generate a new top/bottom padding container 1`] = `
+Object {
+  "backgroundColor": "#FFFFFF",
+  "color": "#263238",
+  "fontFamily": "Manjari",
+  "fontSize": "1rem",
+  "fontWeight": 400,
+  "padding": "2rem 3rem",
+}
+`;
+
+exports[`helper container should return a accent css container 1`] = `
+Object {
+  "backgroundColor": "#263238",
+  "color": "#FFFFFF",
+  "fontFamily": "Manjari",
+  "fontSize": "1rem",
+  "fontWeight": 400,
+  "padding": "2rem 3rem",
+}
+`;
+
+exports[`helper container should return a default css container 1`] = `
+Object {
+  "backgroundColor": "#FFFFFF",
+  "color": "#263238",
+  "fontFamily": "Manjari",
+  "fontSize": "1rem",
+  "fontWeight": 400,
+  "padding": "2rem 3rem",
+}
+`;
+
+exports[`helper container should return a horizontal centralized container css 1`] = `
+Object {
+  "margin": "0 auto",
+}
+`;
+
+exports[`helper container should return a rounded border css container 1`] = `
+Object {
+  "borderRadius": 4,
+}
+`;
+
+exports[`helper container should return a transparent background css container 1`] = `
+Object {
+  "backgroundColor": "transparent",
+  "color": "#263238",
+  "fontFamily": "Manjari",
+  "fontSize": "1rem",
+  "fontWeight": 400,
+  "padding": "2rem 3rem",
+}
+`;
+
+exports[`helper container should return a vertical centralized container css 1`] = `
+Object {
+  "position": "absolute",
+  "top": "50%",
+  "transform": "translateY(-50%)",
+}
+`;
+
+exports[`helper container should return only bottom left rounded border css container 1`] = `
+Object {
+  "borderBottomLeftRadius": 10,
+  "borderBottomRightRadius": undefined,
+  "borderTopLeftRadius": 4,
+  "borderTopRightRadius": undefined,
+}
+`;
+
+exports[`helper container should return only bottom right rounded border css container 1`] = `
+Object {
+  "borderBottomLeftRadius": undefined,
+  "borderBottomRightRadius": 10,
+  "borderTopLeftRadius": 4,
+  "borderTopRightRadius": undefined,
+}
+`;
+
+exports[`helper container should return only top left rounded border css container 1`] = `
+Object {
+  "borderRadius": 10,
+}
+`;
+
+exports[`helper container should return only top right rounded border css container 1`] = `
+Object {
+  "borderBottomLeftRadius": undefined,
+  "borderBottomRightRadius": undefined,
+  "borderTopLeftRadius": 4,
+  "borderTopRightRadius": 10,
+}
+`;

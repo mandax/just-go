@@ -1,19 +1,20 @@
 import * as React from "react";
+
 import { fontMedium } from "../Theme/font";
 import { shadow, Blur } from "../Theme/shadow";
 import { container, roundedBorder } from "../Theme/container";
-import { px, seconds, NumberToCSSUnit } from "../Theme/units";
+import { rem, px, seconds, NumberToCSSUnit } from "../Theme/units";
 
 import Theme from "../Theme";
 
-const buttonBase = (
+export const buttonBase = (
   hoverColor: string = Theme.COLOR_BASE,
   bgHoverColor: string = Theme.COLOR_BRAND,
   color: string = Theme.COLOR_PRIMARY,
   bgColor: string = Theme.COLOR_BASE,
 ) => (
-  scale: NumberToCSSUnit,
-  hover: boolean,
+  scale: NumberToCSSUnit = rem,
+  hover: boolean = false,
   bordered: boolean = true
 ): React.CSSProperties => {
 
@@ -29,27 +30,27 @@ const buttonBase = (
   }
 
   return {
-  ...container(1, 0.5),
-  ...roundedBorder(Theme.BUTTON_BORDER_RADIUS),
-  ...fontMedium(1, Theme.FONT_CONDENSED),
-  ...shadow(Blur.Small),
+    ...container(1, 0.5),
+    ...roundedBorder(Theme.BUTTON_BORDER_RADIUS),
+    ...fontMedium(1, Theme.FONT_CONDENSED),
+    ...shadow(Blur.Small),
 
-  marginRight: scale(0.5),
-  display: 'inline-block',
-  fontSize: scale(Theme.BUTTON_FONT_SIZE),
-  borderWidth: px(Theme.BUTTON_BORDER_SIZE),
-  borderStyle: 'solid',
-  borderColor: bordered ? color : bgColor,
-  backgroundColor: bgColor,
+    marginRight: scale(0.5),
+    display: 'inline-block',
+    fontSize: scale(Theme.BUTTON_FONT_SIZE),
+    borderWidth: px(Theme.BUTTON_BORDER_SIZE),
+    borderStyle: 'solid',
+    borderColor: bordered ? color : bgColor,
+    backgroundColor: bgColor,
 
-  transition: `
-    color ${animationSpeed} ease,
-    border-color ${animationSpeed} ease,
-    box-shadow ${animationSpeed} ease,
-    background-color ${animationSpeed} ease
-  `,
+    transition: `
+      color ${animationSpeed} ease,
+      border-color ${animationSpeed} ease,
+      box-shadow ${animationSpeed} ease,
+      background-color ${animationSpeed} ease
+    `,
 
-  ...hoverProps
+    ...hoverProps
   }
 };
 

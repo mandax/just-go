@@ -1,0 +1,194 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`helper button should generate a button css hovered 1`] = `
+Object {
+  "backgroundColor": "#F4511E",
+  "borderColor": "#F4511E",
+  "borderRadius": 8,
+  "borderStyle": "solid",
+  "borderWidth": "1px",
+  "boxShadow": "0px 0px 8px rgba(0, 0, 0, 0.1)",
+  "color": "#FFFFFF",
+  "cursor": "pointer",
+  "display": "inline-block",
+  "fontFamily": "Barlow Condensed",
+  "fontSize": "1.2rem",
+  "fontWeight": 500,
+  "marginRight": "0.5rem",
+  "padding": "0.5rem 1rem",
+  "transition": "
+      color 0.3s ease,
+      border-color 0.3s ease,
+      box-shadow 0.3s ease,
+      background-color 0.3s ease
+    ",
+}
+`;
+
+exports[`helper button should generate a button css with new scale function 1`] = `
+Object {
+  "backgroundColor": "#FFFFFF",
+  "borderColor": "#263238",
+  "borderRadius": 8,
+  "borderStyle": "solid",
+  "borderWidth": "1px",
+  "boxShadow": "0px 0px 4px rgba(0, 0, 0, 0.1)",
+  "color": "#263238",
+  "display": "inline-block",
+  "fontFamily": "Barlow Condensed",
+  "fontSize": "1.2",
+  "fontWeight": 500,
+  "marginRight": "0.5",
+  "padding": "0.5rem 1rem",
+  "transition": "
+      color 0.3s ease,
+      border-color 0.3s ease,
+      box-shadow 0.3s ease,
+      background-color 0.3s ease
+    ",
+}
+`;
+
+exports[`helper button should generate a button css without border 1`] = `
+Object {
+  "backgroundColor": "#FFFFFF",
+  "borderColor": "#FFFFFF",
+  "borderRadius": 8,
+  "borderStyle": "solid",
+  "borderWidth": "1px",
+  "boxShadow": "0px 0px 4px rgba(0, 0, 0, 0.1)",
+  "color": "#263238",
+  "display": "inline-block",
+  "fontFamily": "Barlow Condensed",
+  "fontSize": "1.2rem",
+  "fontWeight": 500,
+  "marginRight": "0.5rem",
+  "padding": "0.5rem 1rem",
+  "transition": "
+      color 0.3s ease,
+      border-color 0.3s ease,
+      box-shadow 0.3s ease,
+      background-color 0.3s ease
+    ",
+}
+`;
+
+exports[`helper button should generate a default button 1`] = `
+Object {
+  "backgroundColor": "#FFFFFF",
+  "borderColor": "#263238",
+  "borderRadius": 8,
+  "borderStyle": "solid",
+  "borderWidth": "1px",
+  "boxShadow": "0px 0px 4px rgba(0, 0, 0, 0.1)",
+  "color": "#263238",
+  "display": "inline-block",
+  "fontFamily": "Barlow Condensed",
+  "fontSize": "1.2rem",
+  "fontWeight": 500,
+  "marginRight": "0.5rem",
+  "padding": "0.5rem 1rem",
+  "transition": "
+      color 0.3s ease,
+      border-color 0.3s ease,
+      box-shadow 0.3s ease,
+      background-color 0.3s ease
+    ",
+}
+`;
+
+exports[`helper button should generate a new color button 1`] = `
+Object {
+  "backgroundColor": "red",
+  "borderColor": "yellow",
+  "borderRadius": 8,
+  "borderStyle": "solid",
+  "borderWidth": "1px",
+  "boxShadow": "0px 0px 4px rgba(0, 0, 0, 0.1)",
+  "color": "#263238",
+  "display": "inline-block",
+  "fontFamily": "Barlow Condensed",
+  "fontSize": "1.2rem",
+  "fontWeight": 500,
+  "marginRight": "0.5rem",
+  "padding": "0.5rem 1rem",
+  "transition": "
+      color 0.3s ease,
+      border-color 0.3s ease,
+      box-shadow 0.3s ease,
+      background-color 0.3s ease
+    ",
+}
+`;
+
+exports[`helper button should return a default css button 1`] = `
+Object {
+  "backgroundColor": "#FFFFFF",
+  "borderColor": "#263238",
+  "borderRadius": 8,
+  "borderStyle": "solid",
+  "borderWidth": "1px",
+  "boxShadow": "0px 0px 4px rgba(0, 0, 0, 0.1)",
+  "color": "#263238",
+  "display": "inline-block",
+  "fontFamily": "Barlow Condensed",
+  "fontSize": "1.2rem",
+  "fontWeight": 500,
+  "marginRight": "0.5rem",
+  "padding": "0.5rem 1rem",
+  "transition": "
+      color 0.3s ease,
+      border-color 0.3s ease,
+      box-shadow 0.3s ease,
+      background-color 0.3s ease
+    ",
+}
+`;
+
+exports[`helper button should return a neutro css button 1`] = `
+Object {
+  "backgroundColor": "#FFFFFF",
+  "borderColor": "#263238",
+  "borderRadius": 8,
+  "borderStyle": "solid",
+  "borderWidth": "1px",
+  "boxShadow": "0px 0px 4px rgba(0, 0, 0, 0.1)",
+  "color": "#263238",
+  "display": "inline-block",
+  "fontFamily": "Barlow Condensed",
+  "fontSize": "1.2rem",
+  "fontWeight": 500,
+  "marginRight": "0.5rem",
+  "padding": "0.5rem 1rem",
+  "transition": "
+      color 0.3s ease,
+      border-color 0.3s ease,
+      box-shadow 0.3s ease,
+      background-color 0.3s ease
+    ",
+}
+`;
+
+exports[`helper button should return an accent css button 1`] = `
+Object {
+  "backgroundColor": "#FFFFFF",
+  "borderColor": "#263238",
+  "borderRadius": 8,
+  "borderStyle": "solid",
+  "borderWidth": "1px",
+  "boxShadow": "0px 0px 4px rgba(0, 0, 0, 0.1)",
+  "color": "#263238",
+  "display": "inline-block",
+  "fontFamily": "Barlow Condensed",
+  "fontSize": "1.2rem",
+  "fontWeight": 500,
+  "marginRight": "0.5rem",
+  "padding": "0.5rem 1rem",
+  "transition": "
+      color 0.3s ease,
+      border-color 0.3s ease,
+      box-shadow 0.3s ease,
+      background-color 0.3s ease
+    ",
+}
+`;
