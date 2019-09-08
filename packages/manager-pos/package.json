@@ -18,7 +18,6 @@
   ],
   "scripts": {
     "start": "webpack --watch & servor ./dist index.html 8080 --no-browser",
-    "test": "jest",
     "test:watch": "jest:watch",
     "build": "webpack",
     "build:production": "NODE_ENV=production npm run build"

@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`helper font should generate a default font config 1`] = `
+Object {
+  "fontFamily": "Manjari",
+  "fontSize": "1rem",
+  "fontWeight": 400,
+}
+`;
