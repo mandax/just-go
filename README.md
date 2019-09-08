@@ -1,6 +1,6 @@
 # Just Go
 
-Just Go is a platform to manage restaurants. Right now the project just have the start architecture, and the Menu Dishes CRUD.
+Just Go is an early stage platform to manage restaurants.
 
 ## Repo
 
