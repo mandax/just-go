@@ -30,6 +30,8 @@ Assuming that the project dependencies are installed, this command will install 
 
     npm run bootstrap
 
+![Bootstrap](./doc/bootstrap.gif)
+
 You can also run separately, if you want:
 
     # for frontend dependencies
@@ -47,11 +49,15 @@ To run the project and start developing, just type:
 
     npm start
 
+![Start](./doc/start.gif)
+
 ### Running tests
 
 To run the all tests you can type:
 
     npm run test
+
+![Tests](./doc/tests.gif)
 
 You can also enter the package and run each project test with the same command.
 
