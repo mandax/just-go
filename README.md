@@ -51,6 +51,10 @@ To run the project and start developing, just type:
 
     npm start
 
+- Server http://localhost:3000
+- Manager and POS http://localhost:8080
+- Ui Docs http://localhost:8080 [TODO]
+
 ![Start](./doc/start.gif)
 
 ### Running tests
@@ -77,4 +81,5 @@ You can also enter the package and run each project test with the same command.
 - [ ]  add login page
 - [ ]  add sign in page
 - [ ]  setup a docker-compose to run the project
-- [ ]  add production build and deploy.
+- [ ]  add production build and deploy
+- [ ]  add ui interactive docs
