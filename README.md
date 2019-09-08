@@ -41,15 +41,24 @@ You can also run separately, if you want:
     # to purge, migrate and seed the database
     npm run bootstrap:db
 
-### Start developing
+### Start the project
 
 To run the project and start developing, just type:
 
     npm start
 
+### Running tests
+
+To run the all tests you can type:
+
+    npm run test
+
+You can also enter the package and run each project test with the same command.
+
 ## TODO
 
 - [ ]  add API URL to environment var
+- [ ]  add Db config to environment var
 - [ ]  add select input component
 - [ ]  add form validation
 - [ ]  create new dish
