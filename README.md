@@ -9,7 +9,7 @@ Just Go is an early stage platform to manage restaurants.
 This project uses a Monorepo structure which is managed with Lerna.js. Each part of the project is a different package:
 
 - server - Rest Api Server
-- api - Typescript interface
+- api - Frontend services
 - ui - Ui Components
 - manager-pos - Restaurant Manager and Point of Sale app
 
