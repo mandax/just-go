@@ -19,6 +19,7 @@ This project uses a Monorepo structure which is managed with Lerna.js. Each part
 - Rails 6
 - Postgresql 10+
 - Nodejs 10.x+
+- Npm/Npx 6.x+
 
 ## Running
 
