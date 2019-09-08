@@ -2,7 +2,7 @@
 
 Just Go is an early stage platform to manage restaurants.
 
-![Mobile](./doc/mobile.gif)
+<img src="./doc/mobile.gif"  width="340" />
 
 ## Repo
 
