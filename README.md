@@ -58,3 +58,5 @@ To run the project and start developing, just type:
 - [ ]  user authentication - server
 - [ ]  add login page
 - [ ]  add sign in page
+- [ ]  setup a docker-compose to run the project
+- [ ]  add production build and deploy.
