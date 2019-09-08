@@ -1,43 +1,51 @@
 {
-	"name": "@justgo/ui",
-	"version": "0.1.0",
-	"description": "ui components",
-	"main": "index.tsx",
-	"scripts": {
-		"test": "jest",
-		"test:watch": "jest --watch"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://gitlab.com/mandax/just-go.git"
-	},
-	"author": "Anderson Ferreira Pinto (Mandax)",
-	"license": "UNLICENSED",
-	"bugs": {
-		"url": "https://gitlab.com/mandax/just-go/issues"
-	},
-	"homepage": "https://gitlab.com/mandax/just-go#readme",
-	"devDependencies": {
-		"@types/enzyme": "^3.10.3",
-		"@types/jest": "^24.0.18",
-		"@types/query-string": "^6.3.0",
-		"@types/react": "^16.9.2",
-		"@types/react-dom": "^16.9.0",
-		"copy-webpack-plugin": "^5.0.4",
-		"enzyme": "^3.10.0",
-		"jest": "^24.9.0",
-		"servor": "^2.2.1",
-		"source-map-loader": "^0.2.4",
-		"ts-jest": "^24.0.2",
-		"ts-loader": "^6.0.4",
-		"typescript": "^3.6.2",
-		"webpack": "^4.39.3",
-		"webpack-cli": "^3.3.7"
-	},
-	"dependencies": {
-		"query-string": "^6.8.3",
-		"react": "^16.9.0",
-		"react-dom": "^16.9.0",
-		"react-icons": "^3.7.0"
-	}
+  "name": "@justgo/ui",
+  "version": "0.1.0",
+  "description": "ui components",
+  "main": "index.tsx",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "start": "start-storybook -p 8081 --quiet --ci",
+    "build-storybook": "build-storybook"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/mandax/just-go.git"
+  },
+  "author": "Anderson Ferreira Pinto (Mandax)",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://gitlab.com/mandax/just-go/issues"
+  },
+  "homepage": "https://gitlab.com/mandax/just-go#readme",
+  "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@storybook/addon-actions": "^5.1.11",
+    "@storybook/addon-links": "^5.1.11",
+    "@storybook/addons": "^5.1.11",
+    "@storybook/react": "^5.1.11",
+    "@types/enzyme": "^3.10.3",
+    "@types/jest": "^24.0.18",
+    "@types/query-string": "^6.3.0",
+    "@types/react": "^16.9.2",
+    "@types/react-dom": "^16.9.0",
+    "babel-loader": "^8.0.6",
+    "copy-webpack-plugin": "^5.0.4",
+    "enzyme": "^3.10.0",
+    "jest": "^24.9.0",
+    "servor": "^2.2.1",
+    "source-map-loader": "^0.2.4",
+    "ts-jest": "^24.0.2",
+    "ts-loader": "^6.0.4",
+    "typescript": "^3.6.2",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7"
+  },
+  "dependencies": {
+    "query-string": "^6.8.3",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-icons": "^3.7.0"
+  }
 }
