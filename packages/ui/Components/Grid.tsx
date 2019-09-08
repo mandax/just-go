@@ -8,14 +8,11 @@ export interface GridProps {
 	children: Children
 }
 
-export const Grid = (props: GridProps): React.ReactElement => {
-	console.log(props.columns);
-	return (
-		<div style={gridCSS(props.columns)}>
-			{props.children}
-		</div>
-	)
-};
+export const Grid = (props: GridProps): React.ReactElement => (
+	<div style={gridCSS(props.columns)}>
+		{props.children}
+	</div>
+);
 
 const gridCSS = (columns: number = 2): React.CSSProperties => ({
 	display: 'grid',
