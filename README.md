@@ -20,13 +20,13 @@ This project uses a Monorepo structure which is managed with Lerna.js. Each part
 
 ## Running
 
-Each package has your own running pipeline, but with Lerna it's possible to execute all at once. You don't need to install lerna globally, but as we're using `npx` maybe npm can try to install it for each time you run some command, because of this I recoomend you ro install lerna globally:
+Each package has your own running pipeline, but with Lerna it's possible to execute all at once. You don't need to install lerna globally, but it will be faster if you do.
 
     npm install lerna -g
 
 ### Install dependencies
 
-Assuming that all the project dependencies are installed, this command will install and configure all package dependencies, also Lerna will link the local packages.
+Assuming that the project dependencies are installed, this command will install and configure all package dependencies, also Lerna will link local packages. The first run can take a while.
 
     npm run bootstrap
 
