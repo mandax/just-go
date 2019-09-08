@@ -21,6 +21,26 @@ export interface MenuProps {
 
 type MenuForm = Item | NewItem | null;
 
+// TODO: Extract responsive rules to helpers
+const getColumnsByResolution = () => {
+	const xSize = window.innerWidth;
+	if (xSize < 600) return 1;
+	if (xSize < 800) return 2;
+	if (xSize < 1180) return 4;
+	if (xSize < 1600) return 5;
+	if (xSize < 1800) return 6;
+	return 7;
+}
+
+const getContentWidthByResolution = () => {
+	const xSize = window.innerWidth;
+	if (xSize < 600) return 75;
+	if (xSize < 800) return 80;
+	if (xSize < 1200) return 50;
+	return 30;
+}
+
+
 export const Menu = (props: MenuProps): React.ReactElement => {
 
 	const initialForm: MenuForm = null;
@@ -29,6 +49,7 @@ export const Menu = (props: MenuProps): React.ReactElement => {
 	const [form, setForm] = React.useState(initialForm);
 	const [items, setItems] = React.useState(initialItems);
 	const [isContentOpen, setContentOpen] = React.useState(false);
+	const [columns, setColumns] = React.useState(getColumnsByResolution());
 
 	const openForm = (item: MenuForm) => {
 		setForm(item);
@@ -67,6 +88,7 @@ export const Menu = (props: MenuProps): React.ReactElement => {
 
 	React.useEffect(() => {
 		fetchData();
+		window.addEventListener('resize', () => setColumns(getColumnsByResolution()))
 	}, []);
 
 	return (
@@ -83,7 +105,7 @@ export const Menu = (props: MenuProps): React.ReactElement => {
 					<>
 						<h2 style={titleSpacing(4, 2)} key={`cat_${ci}`}>{category}</h2>
 
-						<Grid columns={6}>
+						<Grid columns={columns}>
 							{items[category].map((item, i) =>
 								<Card
 									key={`item_${i}`}
@@ -106,7 +128,7 @@ export const Menu = (props: MenuProps): React.ReactElement => {
 			</div>
 
 			<SideContent
-				width={20}
+				width={getContentWidthByResolution()}
 				open={isContentOpen} >
 
 				<Button type={ButtonType.Accent} onClick={() => submit()}>Save</Button>

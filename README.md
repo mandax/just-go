@@ -57,8 +57,9 @@ You can also enter the package and run each project test with the same command.
 
 ## TODO
 
+- [ ]  add preloader steps
 - [ ]  add API URL to environment var
-- [ ]  add Db config to environment var
+- [ ]  add DB config to environment var
 - [ ]  add select input component
 - [ ]  add form validation
 - [ ]  create new dish
