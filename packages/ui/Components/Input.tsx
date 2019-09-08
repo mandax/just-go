@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { input, label, inputContainer } from "../Theme/input";
-import { setPath } from 'hookrouter';
 
 export interface InputProps {
   type: string,
