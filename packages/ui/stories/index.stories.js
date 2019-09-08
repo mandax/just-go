@@ -2,7 +2,11 @@ import React from 'react';
 
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { Card } from '../Components/Card';
+import { Button, ButtonType } from '../Components/Button';
 
-storiesOf('Button', module)
-  .add('with text', () => <Card onClick={action('clicked')}>Text</Card>);
+storiesOf('UI|Button', module)
+  .add('all', () => <div>
+    <Button onClick={action('clicked')}>Default Button</Button>
+    <Button type={ButtonType.Accent} onClick={action('clicked')}>Accent Button</Button>
+    <Button type={ButtonType.Neutro} onClick={action('clicked')}>Neutro Button</Button>
+  </div>);
