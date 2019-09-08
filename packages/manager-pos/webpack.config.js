@@ -50,8 +50,7 @@ module.exports = {
 
 	externals: {
 		"react": "React",
-		"react-dom": "ReactDOM",
-		"react-router-dom": "ReactRouterDOM"
+		"react-dom": "ReactDOM"
 	},
 
 	...(isProduction ? {} : developmentConfig)
