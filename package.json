@@ -8,6 +8,8 @@
     "start": "npx lerna run --parallel start",
     "test": "npx lerna run test",
     "clean": "npx lerna clean",
+    "build": "npx lerna run build",
+    "build:production": "npx lerna run build:production",
     "bootstrap": "npm run bootstrap:front && npm run bootstrap:server && npm run bootstrap:db",
     "bootstrap:front": "npx lerna bootstrap",
     "bootstrap:server": "( cd packages/server ; bundle )",
