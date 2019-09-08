@@ -54,7 +54,7 @@ To run the project and start developing, just type:
 
 - Server http://localhost:3000
 - Manager and POS http://localhost:8080
-- Ui Docs http://localhost:8080 [TODO]
+- Ui Storybook http://localhost:8081
 
 ![Start](./doc/start.gif)
 
