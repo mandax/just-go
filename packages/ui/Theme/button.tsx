@@ -35,6 +35,7 @@ export const buttonBase = (
     ...fontMedium(1, Theme.FONT_CONDENSED),
     ...shadow(Blur.Small),
 
+    outline: 'none',
     marginRight: scale(0.5),
     display: 'inline-block',
     fontSize: scale(Theme.BUTTON_FONT_SIZE),

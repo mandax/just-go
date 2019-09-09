@@ -46,5 +46,5 @@ export const Button = (props: ButtonProps) => {
 const iconCSS = (
   scale: NumberToCSSUnit
 ): React.CSSProperties => ({
-  marginRight: scale(0.5),
+  marginRight: scale(0.5)
 });

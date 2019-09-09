@@ -70,6 +70,7 @@ You can also enter the package and run each project test with the same command.
 
 ## TODO
 
+- [ ]  storage fonts locally on ui package
 - [ ]  migrate item->dish
 - [ ]  add preloader steps
 - [ ]  add API URL to environment var
