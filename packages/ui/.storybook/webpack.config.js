@@ -8,17 +8,15 @@ module.exports = ({ config }) => {
       {
         loader: require.resolve('react-docgen-typescript-loader'),
       },
-    ],
-    rules: [
-      {
-        test: /\.stories\.jsx?$/,
-        loaders: [{
-          loader: require.resolve('@storybook/addon-storysource/loader'),
-          options: { parser: 'typescript' },
-        }],
-        enforce: 'pre',
-      }
     ]
+  });
+  config.module.rules.push({
+    test: /\.stories\.js?$/,
+    loaders: [{
+      loader: require.resolve('@storybook/addon-storysource/loader'),
+      options: { parser: 'typescript' }
+    }],
+    enforce: 'pre',
   });
   config.resolve.extensions.push('.ts', '.tsx');
   return config;
