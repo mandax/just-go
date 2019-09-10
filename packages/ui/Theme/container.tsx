@@ -3,13 +3,13 @@ import theme from "./index";
 import { rem } from "./units";
 import { font } from "./font";
 
-export type ContainerConstructor =
+export type ContainerGenerator =
   (hPadding?: number, vPadding?: number) => React.CSSProperties
 
 export const containerBase = (
   fontColor: string = theme.COLOR_PRIMARY,
   bgColor: string = theme.COLOR_BASE,
-): ContainerConstructor => (
+): ContainerGenerator => (
   hPadding: number = theme.DEFAULT_HORIZONTAL_PADDING,
   vPadding: number = theme.DEFAULT_VERTICAL_PADDING
 ): CSSProperties => ({
@@ -19,12 +19,12 @@ export const containerBase = (
   padding: `${rem(vPadding)} ${rem(hPadding)}`
 });
 
-export const container: ContainerConstructor = containerBase();
+export const container: ContainerGenerator = containerBase();
 
-export const containerTransparent: ContainerConstructor = 
+export const containerTransparent: ContainerGenerator = 
   containerBase(theme.COLOR_PRIMARY, 'transparent');
 
-export const containerAccent: ContainerConstructor = 
+export const containerAccent: ContainerGenerator = 
   containerBase(theme.COLOR_BASE, theme.COLOR_PRIMARY);
 
 export const verticalCenter: React.CSSProperties = {

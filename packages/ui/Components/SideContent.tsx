@@ -7,15 +7,15 @@ import { Direction } from "../Theme/position";
 import { shadowOn, Blur } from "../Theme/shadow";
 
 import {
-  container as containerConstructor,
-  ContainerConstructor,
+  container as containerGenerator,
+  ContainerGenerator,
 } from "../Theme/container";
 
 export interface SideContentProps {
   children: Children
   open: boolean
   width?: number
-  container?: ContainerConstructor
+  container?: ContainerGenerator
 }
 
 export const SideContent = (props: SideContentProps) => {
@@ -37,7 +37,7 @@ export const SideContent = (props: SideContentProps) => {
 const sideContentCSS = (
   width: number = theme.SIDECONTENT_WIDTH,
   isOpen: boolean,
-  container: ContainerConstructor = containerConstructor
+  container: ContainerGenerator = containerGenerator
 ): React.CSSProperties => {
 
   const xTranslationOpen = `calc(${vw(-width)} - ${rem(theme.DEFAULT_HORIZONTAL_PADDING * 2)})`;
