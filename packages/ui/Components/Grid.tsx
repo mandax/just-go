@@ -1,21 +1,17 @@
 import * as React from "react";
-import theme from "../Theme";
-import { rem } from "../Theme/units";
 import { Children } from "../types";
+import { gridCSS } from "../Theme/grid";
+
+export type RowType = number | string;
 
 export interface GridProps {
-	columns: number
+	columns: number,
+	rows?: RowType,
 	children: Children
 }
 
 export const Grid = (props: GridProps): React.ReactElement => (
-	<div style={gridCSS(props.columns)}>
+	<div style={gridCSS(props.columns, props.rows)}>
 		{props.children}
 	</div>
 );
-
-const gridCSS = (columns: number = 2): React.CSSProperties => ({
-	display: 'grid',
-	gridGap: rem(theme.GRID_DEFAULT_GAP),
-	gridTemplateColumns: `repeat(${columns}, 1fr)`
-})
