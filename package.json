@@ -6,11 +6,17 @@
   },
   "scripts": {
     "start": "npx lerna run --parallel start",
+    "ui": "npm run start -- --scope @justgo/ui",
+    "server": "npm run start -- --scope @justgo/server",
+    "manager": "npm run start -- --scope @justgo/manager-pos",
+
     "test": "npx lerna run test",
     "clean": "npx lerna clean",
+
     "build": "npx lerna run build",
     "build:production": "npx lerna run build:production",
     "bootstrap": "npm run bootstrap:front && npm run bootstrap:server && npm run bootstrap:db",
+
     "bootstrap:front": "npx lerna bootstrap",
     "bootstrap:server": "( cd packages/server ; bundle )",
     "bootstrap:db": "( cd packages/server ; rails db:purge db:migrate db:seed )"

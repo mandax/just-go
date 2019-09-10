@@ -56,6 +56,17 @@ To run the project and start developing, just type:
 - Manager and POS http://localhost:8080
 - Ui Storybook http://localhost:8081
 
+You can also run separately each package:
+
+    # to run the server
+    npm run server
+
+    # to run the manager-pos
+    npm run manager
+
+    # this will run the ui Storybook
+    npm run ui
+
 ![Start](./doc/start.gif)
 
 ### Running tests
