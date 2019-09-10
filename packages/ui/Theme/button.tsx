@@ -56,6 +56,15 @@ export const buttonBase = (
   }
 };
 
+export const buttonIconCSS = (
+  scale: NumberToCSSUnit,
+  hasText: boolean = false
+): React.CSSProperties => ({
+  marginRight: hasText ? scale(0.5) : 0,
+  display: 'inline-block',
+  verticalAlign: 'middle'
+});
+
 export const button = buttonBase();
 
 export const buttonNeutro = buttonBase(Theme.COLOR_PRIMARY, Theme.COLOR_BASE_3);

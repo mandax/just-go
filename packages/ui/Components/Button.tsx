@@ -10,7 +10,7 @@ export enum ButtonType {
 }
 
 export interface ButtonProps {
-  loading?: boolean,
+  loading?: boolean, // TODO: add loading state to the button
   children?: string,
   onClick: Function,
   type?: ButtonType,
@@ -32,7 +32,7 @@ export const Button = (props: ButtonProps) => {
       style={buttonGenerator[generator](scale, over)}>
 
       {props.icon &&
-        <span style={iconCSS(scale, Boolean(props.children))}>
+        <span style={buttonGenerator.buttonIconCSS(scale, Boolean(props.children))}>
           <props.icon size={scale(1.2)} />
         </span>
       }
@@ -42,12 +42,3 @@ export const Button = (props: ButtonProps) => {
     </button>
   );
 };
-
-const iconCSS = (
-  scale: NumberToCSSUnit,
-  hasText: boolean = false
-): React.CSSProperties => ({
-  marginRight: hasText ? scale(0.5) : 0,
-  display: 'inline-block',
-  verticalAlign: 'middle'
-});
