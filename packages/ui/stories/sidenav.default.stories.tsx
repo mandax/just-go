@@ -8,12 +8,11 @@ import { FiCrosshair, FiDatabase, FiFeather, FiHeart } from 'react-icons/fi';
 
 storiesOf('Components|Sidenav', module)
 	.addDecorator(withKnobs)
-	.add('default', () => {
+	.add('default', () => React.createElement(() => {
 
-		let activeLink = 0;
-
+		const [activeLinkIndex, setActiveLinkIndex] = React.useState(0);
 		const onClick = (i: number) => (event: React.MouseEvent) => {
-			activeLink = i;
+			setActiveLinkIndex(i);
 			action('onClick')(event);
 		}
 		const links = [
@@ -25,16 +24,16 @@ storiesOf('Components|Sidenav', module)
 
 		return (
 			<Sidenav fixed={true}>
-				{links.map((link, i) => 
+				{links.map((link, i) =>
 					<SidenavLink
 						idx={i}
 						icon={link.icon}
-						isActive={activeLink === i}
+						isActive={activeLinkIndex === i}
 						onClick={link.onClick}>
 						{link.name}
 					</SidenavLink>
 				)}
 			</Sidenav>
 		)
-	})
+	}))
 
