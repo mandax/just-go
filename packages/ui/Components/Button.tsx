@@ -11,7 +11,7 @@ export enum ButtonType {
 
 export interface ButtonProps {
   loading?: boolean,
-  children: string,
+  children?: string,
   onClick: Function,
   type?: ButtonType,
   icon?: IconType,
@@ -32,8 +32,8 @@ export const Button = (props: ButtonProps) => {
       style={buttonGenerator[generator](scale, over)}>
 
       {props.icon &&
-        <span style={iconCSS(scale)}>
-          <props.icon size={scale(2)} />
+        <span style={iconCSS(scale, Boolean(props.children))}>
+          <props.icon size={scale(1.2)} />
         </span>
       }
 
@@ -44,7 +44,10 @@ export const Button = (props: ButtonProps) => {
 };
 
 const iconCSS = (
-  scale: NumberToCSSUnit
+  scale: NumberToCSSUnit,
+  hasText: boolean = false
 ): React.CSSProperties => ({
-  marginRight: scale(0.5)
+  marginRight: hasText ? scale(0.5) : 0,
+  display: 'inline-block',
+  verticalAlign: 'middle'
 });

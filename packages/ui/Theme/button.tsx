@@ -38,6 +38,7 @@ export const buttonBase = (
     outline: 'none',
     marginRight: scale(0.5),
     display: 'inline-block',
+    lineHeight: scale(1.3),
     fontSize: scale(Theme.BUTTON_FONT_SIZE),
     borderWidth: px(Theme.BUTTON_BORDER_SIZE),
     borderStyle: 'solid',
