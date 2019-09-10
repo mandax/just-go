@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import { storiesOf } from '@storybook/react';
 import { Sidenav, SidenavLink } from '../Components/Sidenav';
@@ -12,15 +12,15 @@ storiesOf('Components|Sidenav', module)
 
 		let activeLink = 0;
 
-		const onClick = (i) => (event) => {
+		const onClick = (i: number) => (event: React.MouseEvent) => {
 			activeLink = i;
 			action('onClick')(event);
 		}
 		const links = [
-			{ icon: FiCrosshair, onClick: onClick(0), name: 'Foo' },
-			{ icon: FiDatabase, onClick: onClick(1), name: 'Foo' },
-			{ icon: FiFeather, onClick: onClick(2), name: 'Foo' },
-			{ icon: FiHeart, onClick: onClick(3), name: 'Foo' }
+			{ icon: FiCrosshair, onClick: onClick(0), name: 'Target' },
+			{ icon: FiDatabase, onClick: onClick(1), name: 'Database' },
+			{ icon: FiFeather, onClick: onClick(2), name: 'Feather' },
+			{ icon: FiHeart, onClick: onClick(3), name: 'Like' }
 		]
 
 		return (
