@@ -20,15 +20,22 @@ export interface SidenavProps {
 export const Sidenav = (props: SidenavProps) => {
 
 	const [isOpen, setOpenState] = React.useState(props.alwaysOpen);
-	const { children, fixed, container, alwaysOpen } = props;
+	const { children, fixed, container } = props;
+	const canClose = () => !props.alwaysOpen;
+
+	const toggleSidenav = () => {
+		if (canClose()) {
+			setOpenState(!isOpen);
+		}
+	}
 
 	return (
-		<SidenavContext.Provider value={[isOpen, setOpenState]}>
+		<SidenavContext.Provider value={[isOpen, toggleSidenav]}>
 			<div style={sidenavCSS(isOpen, fixed, container)}>
 
-				{alwaysOpen ? '' : <SidenavLink
+				{canClose() && <SidenavLink
 					icon={isOpen ? FiX : FiMenu}
-					onClick={() => setOpenState(!isOpen)}>
+					onClick={() => toggleSidenav()}>
 					Close
 				</SidenavLink>}
 
@@ -50,12 +57,12 @@ export interface SidenavLinkProps {
 
 export const SidenavLink = (props: SidenavLinkProps) => {
 
-	const [isOpen, setOpenState] = React.useContext(SidenavContext);
+	const [isOpen, toggleSidenav] = React.useContext(SidenavContext);
 	const [isActive, setActive] = React.useState(props.isActive);
 
 	const onClickEvent = () => {
 		props.onClick && props.onClick();
-		isOpen && setOpenState(false);
+		isOpen && toggleSidenav();
 	}
 
 	React.useEffect(() => {

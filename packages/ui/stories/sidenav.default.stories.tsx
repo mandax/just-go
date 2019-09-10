@@ -2,9 +2,10 @@ import * as React from 'react';
 
 import { storiesOf } from '@storybook/react';
 import { Sidenav, SidenavLink } from '../Components/Sidenav';
-import { withKnobs } from '@storybook/addon-knobs';
+import { withKnobs, boolean, select } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import { FiCrosshair, FiDatabase, FiFeather, FiHeart } from 'react-icons/fi';
+import { container, horizontalCenter, containerTransparent, containerAccent } from '../Theme/container';
 
 storiesOf('Components|Sidenav', module)
 	.addDecorator(withKnobs)
@@ -20,20 +21,31 @@ storiesOf('Components|Sidenav', module)
 			{ icon: FiDatabase, onClick: onClick(1), name: 'Database' },
 			{ icon: FiFeather, onClick: onClick(2), name: 'Feather' },
 			{ icon: FiHeart, onClick: onClick(3), name: 'Like' }
-		]
+		];
+
+		const fixed = boolean('Fixed position', true);
+		const alwaysOpen = boolean('Always open', false);
+		const containerStyle = select('Container style', {
+			default: undefined,
+			setSameAsDefault: container,
+			transparent: containerTransparent,
+			accent: containerAccent
+		}, undefined);
 
 		return (
-			<Sidenav fixed={true}>
-				{links.map((link, i) =>
-					<SidenavLink
-						idx={i}
-						icon={link.icon}
-						isActive={activeLinkIndex === i}
-						onClick={link.onClick}>
-						{link.name}
-					</SidenavLink>
-				)}
-			</Sidenav>
+			<div style={{ ...container(), width: '400px', height: '90%', ...horizontalCenter }}>
+				<Sidenav fixed={fixed} alwaysOpen={alwaysOpen} container={containerStyle}>
+					{links.map((link, i) =>
+						<SidenavLink
+							idx={i}
+							icon={link.icon}
+							isActive={activeLinkIndex === i}
+							onClick={link.onClick}>
+							{link.name}
+						</SidenavLink>
+					)}
+				</Sidenav>
+			</div>
 		)
 	}))
 
