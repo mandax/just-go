@@ -13,4 +13,4 @@ export const Header = (props: HeaderProps) =>
 const headerCSS: React.CSSProperties = {
   ...container(),
   ...shadow()
-}
+};
