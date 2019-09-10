@@ -14,6 +14,7 @@ export interface SidenavProps {
 	children: Children
 	fixed?: boolean
 	alwaysOpen?: boolean
+	verticalCenter?: boolean
 	container?: ContainerGenerator
 }
 
@@ -39,7 +40,7 @@ export const Sidenav = (props: SidenavProps) => {
 					Close
 				</SidenavLink>}
 
-				<div style={contentCSS}>
+				<div style={contentCSS(props.verticalCenter)}>
 					{children}
 				</div>
 			</div>

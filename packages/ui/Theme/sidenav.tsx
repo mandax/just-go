@@ -30,10 +30,12 @@ export const sidenavCSS = (
 	}
 }
 
-export const contentCSS: React.CSSProperties = {
-	...verticalCenter,
+export const contentCSS = (
+	isVerticalCentered: boolean = true
+): React.CSSProperties => ({
+	...(isVerticalCentered ? verticalCenter : {}),
 	width: '100%'
-}
+})
 
 export const buttonCSS: React.CSSProperties = {
 	display: 'block',

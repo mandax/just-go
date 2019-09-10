@@ -25,7 +25,7 @@ export const containerTransparent: ContainerGenerator =
   containerBase(theme.COLOR_PRIMARY, 'transparent');
 
 export const containerAccent: ContainerGenerator = 
-  containerBase(theme.COLOR_BASE, theme.COLOR_PRIMARY);
+  containerBase(theme.COLOR_BASE, theme.COLOR_ACCENT);
 
 export const verticalCenter: React.CSSProperties = {
   position: 'absolute',
