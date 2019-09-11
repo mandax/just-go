@@ -53,6 +53,6 @@ const sideContentCSS = (
     height: percent(1),
     position: 'fixed',
     transform: `translateX(${isOpen ? xTranslationOpen : 0})`,
-    transition: `${seconds(theme.ANIMATION_SPEED)} transform ease-in-out`
+    transition: `${seconds(theme.ANIMATION_SPEED)} transform ease-in-out`,
   }
 }

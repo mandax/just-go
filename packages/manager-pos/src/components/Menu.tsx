@@ -2,7 +2,7 @@ import * as React from "react";
 import Theme from "@justgo/ui/Theme";
 
 import { navigate } from "hookrouter";
-import { GetItems, Items, Item, NewItem, UpdateItem, CreateItem } from "@justgo/api/items";
+import { GetItems, Items, Item, NewItem, UpdateItem } from "@justgo/api/items";
 
 import { containerTransparent } from "@justgo/ui/Theme/container"
 import { titleSpacing, limitChar, font } from "@justgo/ui/Theme/font";
