@@ -38,5 +38,3 @@ export interface OptionProps {
   name: string,
   value: string
 }
-
-export const Option = (props: OptionProps)
