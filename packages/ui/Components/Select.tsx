@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { input, label, inputContainer } from "../Theme/input";
+import { inputContainer } from "../Theme/input";
 import { Children } from "../types";
+import { Label } from "../Components/Label";
 
 export interface SelectProps {
   label?: string,
@@ -24,7 +25,7 @@ export const Select = (props: SelectProps) => {
 
   return (
     <div style={inputContainer()}>
-      {props.label ? <label style={label()}>{props.label}</label> : ''}
+      <Label>{props.label}</Label>
 			<select>
 				{props.children}
 			</select>

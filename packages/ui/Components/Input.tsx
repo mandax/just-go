@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { input, label, inputContainer } from "../Theme/input";
+import { input, inputContainer } from "../Theme/input";
+import { Label } from "../Components/Label";
 
 export interface InputProps {
   type: string,
@@ -34,7 +35,7 @@ export const Input = (props: InputProps) => {
 
   return (
     <div style={inputContainer()}>
-      {props.label ? <label style={label()}>{props.label}</label> : ''}
+      <Label>{props.label}</Label>
       <input
         ref={inputRef}
         style={input()}
