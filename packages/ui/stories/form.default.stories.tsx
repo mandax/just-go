@@ -4,6 +4,7 @@ import { storiesOf } from '@storybook/react';
 import { withKnobs, boolean, text } from '@storybook/addon-knobs';
 import { container } from '../Theme/container';
 import { Input } from '../Components/Input';
+import { Select, Option } from '../Components/Select';
 import { action } from '@storybook/addon-actions';
 
 storiesOf('Components|Form', module)
@@ -37,6 +38,14 @@ storiesOf('Components|Form', module)
 					max={100}
 					step={1}
 					onChange={onChangeInput('number')} />
+				<Select<string> label="Select" value={{
+					name: 'Foo',
+					value: 'foo'
+				}}>
+					<Option value="foo">Foo</Option>
+					<Option value="bar">Bar</Option>
+					<Option value="cool">Cool</Option>
+				</Select>
 			</div>
 		)
 	}))

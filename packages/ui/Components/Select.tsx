@@ -1,41 +1,77 @@
 import * as React from 'react';
 import { inputContainer } from "../Theme/input";
-import { Children } from "../types";
 import { Label } from "../Components/Label";
+import { Button, ButtonType } from '../Components/Button';
+import { FiChevronDown } from 'react-icons/fi';
+import { selectIconCSS, selectInputCSS, optionCSS, optionsCSS } from '../Theme/select';
 
-export interface SelectProps {
-  label?: string,
-  value?: string | number,
-	placeholder?: string,
-	children: React.ReactElement,
-  onChange?: (value: string, isValid?: boolean) => any
+export interface Selected<ValueType> {
+  name: string,
+  value: ValueType
 }
 
-export const Select = (props: SelectProps) => {
+export interface SelectProps<ValueType> {
+  label?: string,
+  value?: Selected<ValueType>,
+  placeholder?: string,
+  children: React.ReactElement[],
+  onChange?: (value: Selected<ValueType>, isValid?: boolean) => any
+}
 
-  const [value, setValue] = React.useState();
+const SelectContext = React.createContext([]);
 
-  const makeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    props.onChange && props.onChange(event.target.value);
+export function Select<ValueType>(props: SelectProps<ValueType>) {
+
+  const initalValue: Selected<ValueType> = props.value;
+  const [value, setValue] = React.useState(initalValue);
+  const [isOpen, setOpen] = React.useState(false);
+
+  const changeTo = (selected: Selected<ValueType>) => {
+    setValue(selected);
+    setOpen(false);
+    props.onChange && props.onChange(selected);
   };
 
-  React.useEffect(() => {
-    props.value && setValue(props.value);
-  }, [props.value])
-
   return (
-    <div style={inputContainer()}>
-      <Label>{props.label}</Label>
-			<select>
-				{props.children}
-			</select>
-      />
-    </div>
+    <SelectContext.Provider value={[changeTo]}>
+      <div
+        style={inputContainer()}>
+        <Label>{props.label}</Label>
+        <div style={selectIconCSS(isOpen)}><FiChevronDown /></div>
+        <input
+          onClick={() => setOpen(true)}
+          onFocus={() => setOpen(true)}
+          placeholder={props.placeholder}
+          style={selectInputCSS()}
+          onChange={() => setOpen(false)}
+          value={value.name} />
+        <div style={optionsCSS(isOpen)}>
+          {props.children}
+        </div>
+      </div>
+    </SelectContext.Provider>
   );
 };
 
 export interface OptionProps {
-  children: Children,
-  name: string,
+  children: string,
   value: string
 }
+
+export const Option = (props: OptionProps) => {
+  const [changeTo] = React.useContext(SelectContext);
+  const onClickEvent = () => {
+    changeTo({ name: props.children, value: props.value });
+  }
+
+  return (
+    <div style={optionCSS()}>
+      <Button
+        asBlock={true}
+        onClick={onClickEvent}
+        type={ButtonType.Link}>
+        {props.children}
+      </Button>
+    </div>
+  )
+} 

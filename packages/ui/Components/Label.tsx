@@ -6,4 +6,4 @@ export interface LabelProps {
 }
 
 export const Label = (props: LabelProps) => 
-  (props.children && <label style={label()}>{props.children}</label>);
+  (props.children ? <label style={label()}>{props.children}</label> : <></>);
