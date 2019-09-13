@@ -10,6 +10,6 @@ export const GetCategory = (id: number) => Get<Category>(`/categories/${id}`);
 
 export const GetCategories = () => Get<Category[]>('/categories');
 
-export const CreateCategory = (id: number, body: string) => PostJSON<string, Category>('/categories', body);
+export const CreateCategory = (body: string) => PostJSON<string, Category>('/categories', body);
 
 export const DeleteCategory = (id: number) => Delete(`/categories/${id}`);

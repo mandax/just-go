@@ -2,8 +2,9 @@ import * as React from "react";
 import Theme from "@justgo/ui/Theme";
 
 import { navigate } from "hookrouter";
-import { GetItems, Items, Item, NewItem, UpdateItem } from "@justgo/api/items";
+import { GetItems, Items, Item, NewItem, UpdateItem, NewEmptyItem, CreateItem } from "@justgo/api/items";
 import { GetCategories, Category } from "@justgo/api/categories";
+import { FiPlusCircle } from "react-icons/fi";
 
 import { containerTransparent } from "@justgo/ui/Theme/container"
 import { titleSpacing, limitChar, font } from "@justgo/ui/Theme/font";
@@ -57,10 +58,10 @@ export const Menu = (props: MenuProps): React.ReactElement => {
 	const openForm = (item: MenuForm) => {
 		setForm(item);
 		setContentOpen(true);
-		navigate(`/menu/${item.id}`);
+		item.id && navigate(`/menu/${item.id}`);
 	}
 
-	const closeForm = () => {
+	const closeForm = async () => {
 		setForm(initialForm);
 		setContentOpen(false);
 		navigate('/menu');
@@ -84,16 +85,26 @@ export const Menu = (props: MenuProps): React.ReactElement => {
 	const isSelected = (item: Item): boolean => form && form.id === item.id;
 
 	const submit = async () => {
-		const newItem = await UpdateItem(Number(form.id), form as Item);
+		let newItem;
+
+		if (form.id) {
+			newItem = await UpdateItem(Number(form.id), form as Item);
+		} else {
+			newItem = await CreateItem(form as NewItem);
+		}
+		
 		if (!newItem.error) {
 			closeForm();
 			fetchData(true);
 		}
 	}
 
-	const onChangeCategory = (selected: Selected<number>) => {
+	const onChangeCategory = (selected: Selected<number>) => 
 		setForm({ ...form, category_name: selected.name, category_id: selected.value })
-		console.log(form);
+
+	const addNewDish = async () => {
+		await closeForm();
+		openForm(NewEmptyItem);
 	}
 
 	React.useEffect(() => {
@@ -110,6 +121,8 @@ export const Menu = (props: MenuProps): React.ReactElement => {
 			</Header>
 
 			<div style={contentCSS}>
+
+				<Button type={ButtonType.Accent} onClick={addNewDish} icon={FiPlusCircle}>Dish</Button>
 
 				{categories.map((category, ci) => (
 					<>

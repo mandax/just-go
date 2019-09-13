@@ -38,12 +38,22 @@ export interface ErrorMessage {
   error: string
 }
 
+export const NewEmptyItem: NewItem = ({
+  name: '',
+  description: '',
+  category_id: null,
+  category_name: '',
+  picture: '',
+  max_discount: '',
+  price: '',
+  cost: ''
+})
 
 export const GetItem = (id: number) => Get<Item>(`/items/${id}`);
 
 export const GetItems = () => Get<Items>('/items');
 
-export const CreateItem = (id: number, body: NewItem) => PostJSON<NewItem, Item>('/items', body);
+export const CreateItem = (body: NewItem) => PostJSON<NewItem, Item>('/items', body);
 
 export const UpdateItem = (id: number, body: Item) => PutJSON<Item, Item>(`/items/${id}`, body);
 
