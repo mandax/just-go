@@ -11,7 +11,7 @@ class ItemsController < ActionController::API
 				.select('items.*, categories.name AS category_name')
 				.joins('LEFT JOIN categories ON categories.id = items.category_id')
 				.order("#{order} #{sort}")
-				.group_by{|i| i.category_name}
+				.group_by{|i| i.category_id}
 		end
 
 		render json: items, status: :ok
