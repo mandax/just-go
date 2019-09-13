@@ -3,6 +3,7 @@ import Theme from "@justgo/ui/Theme";
 
 import { navigate } from "hookrouter";
 import { GetItems, Items, Item, NewItem, UpdateItem } from "@justgo/api/items";
+import { GetCategories, Category } from "@justgo/api/categories";
 
 import { containerTransparent } from "@justgo/ui/Theme/container"
 import { titleSpacing, limitChar, font } from "@justgo/ui/Theme/font";
@@ -14,6 +15,7 @@ import { Header } from "@justgo/ui/Components/Header";
 import { TextArea } from "@justgo/ui/Components/TextArea";
 import { Button, ButtonType } from "@justgo/ui/Components/Button";
 import { rem } from "@justgo/ui/Theme/units";
+import { Select, Option, Selected } from "@justgo/ui/Components/Select";
 
 export interface MenuProps {
 	id?: number
@@ -48,6 +50,7 @@ export const Menu = (props: MenuProps): React.ReactElement => {
 
 	const [form, setForm] = React.useState(initialForm);
 	const [items, setItems] = React.useState(initialItems);
+	const [categories, setCategories] = React.useState([]);
 	const [isContentOpen, setContentOpen] = React.useState(false);
 	const [columns, setColumns] = React.useState(getColumnsByResolution());
 
@@ -64,11 +67,13 @@ export const Menu = (props: MenuProps): React.ReactElement => {
 	}
 
 	const fetchData = async (preventOpenForm?: boolean) => {
-		const data = await GetItems() as Items;
-		setItems(data);
+		const itemsData = await GetItems() as Items;
+		const categoriesData = await GetCategories() as Category[];
+		setItems(itemsData);
+		setCategories(categoriesData);
 
 		if (props.id && !preventOpenForm) {
-			openForm(getItemById(Number(props.id), data));
+			openForm(getItemById(Number(props.id), itemsData));
 		}
 	}
 
@@ -86,6 +91,11 @@ export const Menu = (props: MenuProps): React.ReactElement => {
 		}
 	}
 
+	const onChangeCategory = (selected: Selected<number>) => {
+		setForm({ ...form, category_name: selected.name, category_id: selected.value })
+		console.log(form);
+	}
+
 	React.useEffect(() => {
 		fetchData();
 		window.addEventListener('resize', () => setColumns(getColumnsByResolution()))
@@ -101,12 +111,12 @@ export const Menu = (props: MenuProps): React.ReactElement => {
 
 			<div style={contentCSS}>
 
-				{Object.keys(items).map((category, ci) => (
+				{categories.map((category, ci) => (
 					<>
-						<h2 style={titleSpacing(4, 2)} key={`cat_${ci}`}>{category}</h2>
+						<h2 style={titleSpacing(4, 2)} key={`cat_${ci}`}>{category.name}</h2>
 
 						<Grid columns={columns}>
-							{items[category].map((item, i) =>
+							{items[category.id].map((item: Item, i: number) =>
 								<Card
 									key={`item_${i}`}
 									selected={isSelected(item)}
@@ -142,34 +152,47 @@ export const Menu = (props: MenuProps): React.ReactElement => {
 							focus={true}
 							placeholder="Type the name of the Dish"
 							value={form.name as string}
-							onChange={(value) => setForm({ ...form, name: value })} />,
+							onChange={(value: string) => setForm({ ...form, name: value })} />,
+
+						<Select<number>
+							label="Category"
+							onChange={onChangeCategory} 
+							value={{ name: form.category_name, value: form.category_id}}>
+							{categories.map((category, i) => 
+								<Option key={`cat_${i}`} value={category.id}>{category.name}</Option>
+							)}
+						</Select>,
+						
 						<TextArea
 							label="Description"
 							placeholder="Describe how good it is!"
-							onChange={(value) => setForm({ ...form, description: value })}>
+							onChange={(value: string) => setForm({ ...form, description: value })}>
 							{form.description}
 						</TextArea>,
+
 						<Input
 							type="number"
 							label="Price"
 							placeholder="20"
 							step={0.01} min={0}
 							value={form.price as string}
-							onChange={(value) => setForm({ ...form, price: value })} />,
+							onChange={(value: string) => setForm({ ...form, price: value })} />,
+						
 						<Input
 							type="number"
 							label="Cost"
 							step={0.01} min={0}
 							placeholder="10"
 							value={form.cost as string}
-							onChange={(value) => setForm({ ...form, cost: value })} />,
+							onChange={(value: string) => setForm({ ...form, cost: value })} />,
+						
 						<Input
 							type="number"
 							min={0} max={100}
 							label="Max discount allowed (%)"
 							placeholder="5"
 							value={form.max_discount as string}
-							onChange={(value) => setForm({ ...form, max_discount: value })} />
+							onChange={(value: string) => setForm({ ...form, max_discount: value })} />
 					]}
 				</div>
 			</SideContent>

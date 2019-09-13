@@ -31,10 +31,12 @@ export const optionsCSS = (isOpen: boolean): React.CSSProperties => {
   return {
     ...shadowOn(Direction.Down),
 
+    zIndex: 100,
     position: 'absolute',
     minWidth: rem(15),
     transform: `translate(0, ${rem(-0.5)}) scale(0)`,
     transformOrigin: 'left top',
+    backgroundColor: Theme.COLOR_BASE,
     transition: `transform ${seconds(Theme.ANIMATION_SPEED / 2)} ease-in-out`,
 
     ...(isOpen ? open : {})

@@ -15,6 +15,7 @@ export interface SelectProps<ValueType> {
   value?: Selected<ValueType>,
   placeholder?: string,
   children: React.ReactElement[],
+  validator?: (value: Selected<ValueType>) => boolean,
   onChange?: (value: Selected<ValueType>, isValid?: boolean) => any
 }
 
@@ -22,14 +23,14 @@ const SelectContext = React.createContext([]);
 
 export function Select<ValueType>(props: SelectProps<ValueType>) {
 
-  const initalValue: Selected<ValueType> = props.value;
-  const [value, setValue] = React.useState(initalValue);
+  const initalSelected: Selected<ValueType> = props.value;
+  const [selected, setSelected] = React.useState(initalSelected);
   const [isOpen, setOpen] = React.useState(false);
 
-  const changeTo = (selected: Selected<ValueType>) => {
-    setValue(selected);
+  const changeTo = (newSelected: Selected<ValueType>) => {
+    setSelected(newSelected);
     setOpen(false);
-    props.onChange && props.onChange(selected);
+    props.onChange && props.onChange(newSelected);
   };
 
   return (
@@ -44,7 +45,7 @@ export function Select<ValueType>(props: SelectProps<ValueType>) {
           placeholder={props.placeholder}
           style={selectInputCSS()}
           onChange={() => setOpen(false)} //TODO: set blur action to close
-          value={value.name} />
+          value={selected.name} />
         <div style={optionsCSS(isOpen)}>
           {props.children}
         </div>
@@ -53,12 +54,12 @@ export function Select<ValueType>(props: SelectProps<ValueType>) {
   );
 };
 
-export interface OptionProps {
+export interface OptionProps<ValueType> {
   children: string,
-  value: string
+  value: ValueType
 }
 
-export const Option = (props: OptionProps) => {
+export function Option<ValueType> (props: OptionProps<ValueType>) {
   const [changeTo] = React.useContext(SelectContext);
   const onClickEvent = () => {
     changeTo({ name: props.children, value: props.value });
