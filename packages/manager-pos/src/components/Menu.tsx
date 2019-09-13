@@ -16,7 +16,7 @@ import { Header } from "@justgo/ui/Components/Header";
 import { TextArea } from "@justgo/ui/Components/TextArea";
 import { Button, ButtonType } from "@justgo/ui/Components/Button";
 import { rem } from "@justgo/ui/Theme/units";
-import { Select, Option, Selected } from "@justgo/ui/Components/Select";
+import { Select, Option, Selected, buildSelectObj } from "@justgo/ui/Components/Select";
 
 export interface MenuProps {
 	id?: number
@@ -59,14 +59,14 @@ export const Menu = (props: MenuProps): React.ReactElement => {
 		setForm(item);
 		setContentOpen(true);
 		item.id && navigate(`/menu/${item.id}`);
-	}
-
+	}	
+	
 	const closeForm = async () => {
 		setForm(initialForm);
 		setContentOpen(false);
 		navigate('/menu');
 	}
-
+	
 	const fetchData = async (preventOpenForm?: boolean) => {
 		const itemsData = await GetItems() as Items;
 		const categoriesData = await GetCategories() as Category[];
@@ -101,6 +101,7 @@ export const Menu = (props: MenuProps): React.ReactElement => {
 
 	const onChangeCategory = (selected: Selected<number>) => 
 		setForm({ ...form, category_name: selected.name, category_id: selected.value })
+
 
 	const addNewDish = async () => {
 		await closeForm();
@@ -170,7 +171,7 @@ export const Menu = (props: MenuProps): React.ReactElement => {
 						<Select<number>
 							label="Category"
 							onChange={onChangeCategory} 
-							value={{ name: form.category_name, value: form.category_id}}>
+							value={buildSelectObj(form.category_name, form.category_id)}>
 							{categories.map((category, i) => 
 								<Option key={`cat_${i}`} value={category.id}>{category.name}</Option>
 							)}

@@ -30,7 +30,7 @@ export const Input = (props: InputProps) => {
   }, [])
 
   React.useEffect(() => {
-    props.value && setValue(props.value);
+    setValue(props.value);
   }, [props.value])
 
   return (

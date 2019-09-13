@@ -28,10 +28,13 @@ export function Select<ValueType>(props: SelectProps<ValueType>) {
   const [isOpen, setOpen] = React.useState(false);
 
   const changeTo = (newSelected: Selected<ValueType>) => {
-    setSelected(newSelected);
     setOpen(false);
     props.onChange && props.onChange(newSelected);
   };
+  
+  React.useEffect(() => {
+    setSelected(props.value);
+  }, [props.value])
 
   return (
     <SelectContext.Provider value={[changeTo]}>
@@ -75,3 +78,7 @@ export function Option<ValueType> (props: OptionProps<ValueType>) {
     </Button>
   )
 } 
+
+export function buildSelectObj<ValueType> (name: string, value: ValueType) {
+  return { name, value }
+}

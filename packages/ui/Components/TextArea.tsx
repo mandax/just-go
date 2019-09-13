@@ -12,20 +12,25 @@ export interface TextAreaProps {
 
 export const TextArea = (props: TextAreaProps) => {
 
+  const [text, setText] = React.useState(props.children);
+
   const makeChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     props.onChange && props.onChange(event.target.value);
   };
+  
+  React.useEffect(() => {
+    setText(props.children);
+  }, [props.children])
 
   return (
     <div style={inputContainer()}>
       <Label>{props.label}</Label>
       <textarea
+        value={text}
         style={input()}
         onChange={makeChange}
         rows={props.rows || 4}
-        placeholder={props.placeholder}>
-        {props.children}
-      </textarea>
+        placeholder={props.placeholder} />
     </div>
   );
 };
