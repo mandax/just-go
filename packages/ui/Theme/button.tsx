@@ -1,9 +1,9 @@
 import * as React from "react";
 
-import { fontMedium } from "../Theme/font";
+import { fontMedium, fontStrong } from "../Theme/font";
 import { shadow, Blur } from "../Theme/shadow";
 import { container, roundedBorder } from "../Theme/container";
-import { rem, px, seconds, NumberToCSSUnit } from "../Theme/units";
+import { rem, px, seconds, NumberToCSSUnit, percent } from "../Theme/units";
 
 import Theme from "../Theme";
 
@@ -15,46 +15,48 @@ export const buttonBase = (
 ) => (
   scale: NumberToCSSUnit = rem,
   hover: boolean = false,
+  asBlock: boolean = false,
   bordered: boolean = true
 ): React.CSSProperties => {
 
-  const animationSpeed = seconds(Theme.ANIMATION_SPEED);
+    const animationSpeed = seconds(Theme.ANIMATION_SPEED);
 
-  const hoverProps = hover && {
-    ...shadow(),
+    const hoverProps = hover && {
+      ...shadow(),
 
-    backgroundColor: bgHoverColor,
-    borderColor: bgHoverColor,
-    color: hoverColor,
-    cursor: 'pointer'
-  }
+      backgroundColor: bgHoverColor,
+      borderColor: bordered ? bgHoverColor : bgColor,
+      color: hoverColor,
+      cursor: 'pointer'
+    }
 
-  return {
-    ...container(1, 0.5),
-    ...roundedBorder(Theme.BUTTON_BORDER_RADIUS),
-    ...fontMedium(1, Theme.FONT_CONDENSED),
-    ...shadow(Blur.Small),
+    return {
+      ...container(1, 0.5),
+      ...roundedBorder(Theme.BUTTON_BORDER_RADIUS),
+      ...fontMedium(1, Theme.FONT_CONDENSED),
+      ...shadow(Blur.Small),
 
-    outline: 'none',
-    marginRight: scale(0.5),
-    display: 'inline-block',
-    lineHeight: scale(1.3),
-    fontSize: scale(Theme.BUTTON_FONT_SIZE),
-    borderWidth: px(Theme.BUTTON_BORDER_SIZE),
-    borderStyle: 'solid',
-    borderColor: bordered ? color : bgColor,
-    backgroundColor: bgColor,
+      width: asBlock ? percent(1) : 'auto',
+      outline: 'none',
+      marginRight: scale(0.5),
+      display: asBlock ? 'block' : 'inline-block',
+      lineHeight: scale(1.3),
+      fontSize: scale(Theme.BUTTON_FONT_SIZE),
+      borderWidth: px(Theme.BUTTON_BORDER_SIZE),
+      borderStyle: 'solid',
+      borderColor: bordered ? color : bgColor,
+      backgroundColor: bgColor,
 
-    transition: `
+      transition: `
       color ${animationSpeed} ease,
       border-color ${animationSpeed} ease,
       box-shadow ${animationSpeed} ease,
       background-color ${animationSpeed} ease
     `,
 
-    ...hoverProps
-  }
-};
+      ...hoverProps
+    }
+  };
 
 export const buttonIconCSS = (
   scale: NumberToCSSUnit,
@@ -70,3 +72,19 @@ export const button = buttonBase();
 export const buttonNeutro = buttonBase(Theme.COLOR_PRIMARY, Theme.COLOR_BASE_3);
 
 export const buttonAccent = buttonBase(Theme.COLOR_BASE, Theme.COLOR_ACCENT);
+
+export const buttonLink = (
+  scale: NumberToCSSUnit = rem,
+  hover: boolean = false,
+  bordered: boolean = false,
+  asBlock: boolean = false
+): React.CSSProperties => ({
+  ...buttonBase(Theme.COLOR_BASE, Theme.COLOR_BRAND)(scale, hover, bordered, asBlock),
+  ...container(0.2, 0),
+  ...fontStrong(),
+  
+  boxShadow: 'none',
+  textAlign: 'left',
+  backgroundColor: Theme.COLOR_BASE,
+  color: hover ? Theme.COLOR_BRAND : Theme.COLOR_PRIMARY
+});

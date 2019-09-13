@@ -6,7 +6,8 @@ import { em, rem, NumberToCSSUnit } from "../Theme/units";
 export enum ButtonType {
   Default = 'button',
   Neutro = 'buttonNeutro',
-  Accent = 'buttonAccent'
+  Accent = 'buttonAccent',
+  Link = 'buttonLink'
 }
 
 export interface ButtonProps {
@@ -15,6 +16,7 @@ export interface ButtonProps {
   onClick: Function,
   type?: ButtonType,
   icon?: IconType,
+  asBlock?: boolean,
   scalable?: boolean
 }
 
@@ -29,7 +31,7 @@ export const Button = (props: ButtonProps) => {
       onMouseOver={() => setOver(true)}
       onMouseOut={() => setOver(false)}
       onClick={() => props.onClick()}
-      style={buttonGenerator[generator](scale, over)}>
+      style={buttonGenerator[generator](scale, over, props.asBlock)}>
 
       {props.icon &&
         <span style={buttonGenerator.buttonIconCSS(scale, Boolean(props.children))}>

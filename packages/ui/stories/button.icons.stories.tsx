@@ -9,9 +9,7 @@ import { FiAlertTriangle, FiPhoneIncoming, FiSave, FiTrash2 } from 'react-icons/
 storiesOf('Components|Button', module)
   .add('using icons', () =>
     <div style={container()}>
-      <p>
-        Use <a href="https://react-icons.netlify.com" target="_blank">React Icons</a> components.
-      </p>
+      <p>Use <a href="https://react-icons.netlify.com" target="_blank">React Icons</a> components.</p>
       <br />
       <Button icon={FiSave} type={ButtonType.Accent} onClick={action('clicked')}>Save</Button>
       <Button icon={FiAlertTriangle} onClick={action('clicked')}>Be Careful</Button>

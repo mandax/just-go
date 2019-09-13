@@ -1,6 +1,6 @@
 import * as React from 'react';
-
-import { input, label, inputContainer } from '../Theme/input';
+import { Label } from "../Components/Label";
+import { input, inputContainer } from '../Theme/input';
 
 export interface TextAreaProps {
   label?: string,
@@ -18,7 +18,7 @@ export const TextArea = (props: TextAreaProps) => {
 
   return (
     <div style={inputContainer()}>
-      {props.label && <label style={label()}>{props.label}</label>}
+      <Label>{props.label}</Label>
       <textarea
         style={input()}
         onChange={makeChange}

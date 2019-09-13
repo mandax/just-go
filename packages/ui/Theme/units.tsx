@@ -6,6 +6,8 @@ export type NumberToCSSUnit = (num: number) => string;
 
 export const seconds: NumberToCSSUnit = (num: number): string => `${num}s`;
 
+export const deg: NumberToCSSUnit = (num: number): string => `${num}deg`;
+
 export const px: NumberToCSSUnit = (num: number): string => `${num}px`;
 
 export const vw: NumberToCSSUnit = (num: number): string => `${num}vw`;
