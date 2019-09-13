@@ -82,13 +82,14 @@ You can also enter the package and run each project test with the same command.
 ## TODO
 
 - [ ]  storage fonts locally on ui package
+- [ ]  change images based on unsplash api
 - [ ]  migrate item->dish
 - [ ]  add preloader steps
 - [ ]  add API URL to environment var
 - [ ]  add DB config to environment var
-- [ ]  add select input component
+- [x]  add select input component
 - [ ]  add form validation
-- [ ]  create new dish
+- [x]  create new dish
 - [ ]  add unit tests for ui components
 - [ ]  add search bar on dishes
 - [ ]  user authentication - server
@@ -96,4 +97,4 @@ You can also enter the package and run each project test with the same command.
 - [ ]  add sign in page
 - [ ]  setup a docker-compose to run the project
 - [ ]  add production build and deploy
-- [ ]  add ui interactive docs
+- [x]  add ui interactive docs
