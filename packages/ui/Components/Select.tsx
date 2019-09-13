@@ -66,13 +66,12 @@ export function Option<ValueType> (props: OptionProps<ValueType>) {
   }
 
   return (
-    <div style={optionCSS()}>
-      <Button
-        asBlock={true}
-        onClick={onClickEvent}
-        type={ButtonType.Link}>
-        {props.children}
-      </Button>
-    </div>
+    <Button
+      style={optionCSS()}
+      asBlock={true}
+      onClick={onClickEvent}
+      type={ButtonType.Link}>
+      {props.children}
+    </Button>
   )
 } 

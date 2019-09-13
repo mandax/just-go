@@ -17,7 +17,8 @@ export interface ButtonProps {
   type?: ButtonType,
   icon?: IconType,
   asBlock?: boolean,
-  scalable?: boolean
+  scalable?: boolean,
+  style?: React.CSSProperties
 }
 
 export const Button = (props: ButtonProps) => {
@@ -26,12 +27,17 @@ export const Button = (props: ButtonProps) => {
   const scale: NumberToCSSUnit = props.scalable ? em : rem;
   const generator = props.type || ButtonType.Default;
 
+  const buttonStyle = (): React.CSSProperties => ({
+    ...buttonGenerator[generator](scale, over, props.asBlock),
+    ...(props.style || {})
+  })
+
   return (
     <button
       onMouseOver={() => setOver(true)}
       onMouseOut={() => setOver(false)}
       onClick={() => props.onClick()}
-      style={buttonGenerator[generator](scale, over, props.asBlock)}>
+      style={buttonStyle()}>
 
       {props.icon &&
         <span style={buttonGenerator.buttonIconCSS(scale, Boolean(props.children))}>

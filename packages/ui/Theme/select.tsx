@@ -19,7 +19,7 @@ export const selectIconCSS = (isOpen: boolean): React.CSSProperties => ({
 
 export const selectInputCSS = (): React.CSSProperties => ({
   ...input(),
-  width: 'auto',
+  width: `calc(${percent(1)} - ${rem(3)})`,
   display: 'inline-block',
   cursor: 'pointer'
 });
@@ -44,6 +44,9 @@ export const optionsCSS = (isOpen: boolean): React.CSSProperties => {
 };
 
 export const optionCSS = (): React.CSSProperties => ({
-  ...containerTransparent(0.5, 0.5),
+  lineHeight: rem(3),
+  paddingLeft: rem(1),
+  paddingRight: rem(1),
+  verticalAlign: 'middle',
   borderBottom: `${px(1)} solid ${Theme.COLOR_BASE_2}`
 });
