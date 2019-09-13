@@ -43,7 +43,7 @@ export function Select<ValueType>(props: SelectProps<ValueType>) {
           onFocus={() => setOpen(true)}
           placeholder={props.placeholder}
           style={selectInputCSS()}
-          onChange={() => setOpen(false)}
+          onChange={() => setOpen(false)} //TODO: set blur action to close
           value={value.name} />
         <div style={optionsCSS(isOpen)}>
           {props.children}
