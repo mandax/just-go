@@ -1,6 +1,6 @@
 import { Get, Delete, PutJSON, PostJSON } from "./base";
 
-export interface Item {
+export interface Dish {
   id: number
   created_at: Date
   modified_by: Date
@@ -16,11 +16,11 @@ export interface Item {
   [key: string]: string | number | Date
 }
 
-export interface Items {
-  [category_name: string]: Item[]
+export interface Dishes {
+  [category_name: string]: Dish[]
 }
 
-export interface NewItem {
+export interface NewDish {
   name: string
   description: string
   category_id: number
@@ -38,7 +38,7 @@ export interface ErrorMessage {
   error: string
 }
 
-export const NewEmptyItem: NewItem = ({
+export const NewEmptyDish: NewDish = ({
   name: '',
   description: '',
   category_id: null,
@@ -49,12 +49,12 @@ export const NewEmptyItem: NewItem = ({
   cost: ''
 })
 
-export const GetItem = (id: number) => Get<Item>(`/items/${id}`);
+export const GetDish = (id: number) => Get<Dish>(`/dishes/${id}`);
 
-export const GetItems = () => Get<Items>('/items');
+export const GetDishes = () => Get<Dishes>('/dishes');
 
-export const CreateItem = (body: NewItem) => PostJSON<NewItem, Item>('/items', body);
+export const CreateDish = (body: NewDish) => PostJSON<NewDish, Dish>('/dishes', body);
 
-export const UpdateItem = (id: number, body: Item) => PutJSON<Item, Item>(`/items/${id}`, body);
+export const UpdateDish = (id: number, body: Dish) => PutJSON<Dish, Dish>(`/dishes/${id}`, body);
 
-export const DeleteItem = (id: number) => Delete(`/items/${id}`);
+export const DeleteDish = (id: number) => Delete(`/dishes/${id}`);

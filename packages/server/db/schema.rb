@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2019_09_06_134836) do
     t.index ["name"], name: "index_categories_on_name", unique: true
   end
 
-  create_table "items", force: :cascade do |t|
+  create_table "dishes", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.bigint "category_id", null: false
@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(version: 2019_09_06_134836) do
     t.decimal "cost", precision: 5, scale: 2
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["category_id"], name: "index_items_on_category_id"
+    t.index ["category_id"], name: "index_dishes_on_category_id"
   end
 
-  add_foreign_key "items", "categories"
+  add_foreign_key "dishes", "categories"
 end

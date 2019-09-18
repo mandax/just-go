@@ -11,7 +11,7 @@ end
 	price = Faker::Number.decimal(l_digits: 2, r_digits: 2)
 	cost = price * (Faker::Number.within(range: 0...80).to_f / 100)
 
-	Item.create({
+	Dish.create({
 		name: Faker::Food.dish,
 		description: Faker::Food.description,
 		category: Category.select(:id).order('RANDOM()').first,

@@ -2,7 +2,7 @@ import * as React from "react";
 import Theme from "@justgo/ui/Theme";
 
 import { navigate } from "hookrouter";
-import { GetItems, Items, Item, NewItem, UpdateItem, NewEmptyItem, CreateItem } from "@justgo/api/items";
+import { GetDishes, Dishes, Dish, NewDish, UpdateDish, NewEmptyDish, CreateDish } from "@justgo/api/dishes";
 import { GetCategories, Category } from "@justgo/api/categories";
 import { FiPlusCircle } from "react-icons/fi";
 
@@ -22,7 +22,7 @@ export interface MenuProps {
 	id?: number
 }
 
-type MenuForm = Item | NewItem | null;
+type MenuForm = Dish | NewDish | null;
 
 // TODO: Extract responsive rules to helpers
 const getColumnsByResolution = () => {
@@ -47,18 +47,18 @@ const getContentWidthByResolution = () => {
 export const Menu = (props: MenuProps): React.ReactElement => {
 
 	const initialForm: MenuForm = null;
-	const initialItems: Items = {};
+	const initialDishes: Dishes = {};
 
 	const [form, setForm] = React.useState(initialForm);
-	const [items, setItems] = React.useState(initialItems);
+	const [dishes, setDishes] = React.useState(initialDishes);
 	const [categories, setCategories] = React.useState([]);
 	const [isContentOpen, setContentOpen] = React.useState(false);
 	const [columns, setColumns] = React.useState(getColumnsByResolution());
 
-	const openForm = (item: MenuForm) => {
-		setForm(item);
+	const openForm = (dish: MenuForm) => {
+		setForm(dish);
 		setContentOpen(true);
-		item.id && navigate(`/menu/${item.id}`);
+		dish.id && navigate(`/menu/${dish.id}`);
 	}	
 	
 	const closeForm = async () => {
@@ -68,32 +68,32 @@ export const Menu = (props: MenuProps): React.ReactElement => {
 	}
 	
 	const fetchData = async (preventOpenForm?: boolean) => {
-		const itemsData = await GetItems() as Items;
+		const dishesData = await GetDishes() as Dishes;
 		const categoriesData = await GetCategories() as Category[];
-		setItems(itemsData);
+		setDishes(dishesData);
 		setCategories(categoriesData);
 
 		if (props.id && !preventOpenForm) {
-			openForm(getItemById(Number(props.id), itemsData));
+			openForm(getDishById(Number(props.id), dishesData));
 		}
 	}
 
-	const getItemById = (id: number, data: Items) =>
+	const getDishById = (id: number, data: Dishes) =>
 		Object.values(data).flat()
-			.find((item) => item.id === id);
+			.find((dish) => dish.id === id);
 
-	const isSelected = (item: Item): boolean => form && form.id === item.id;
+	const isSelected = (dish: Dish): boolean => form && form.id === dish.id;
 
 	const submit = async () => {
-		let newItem;
+		let newDish;
 
 		if (form.id) {
-			newItem = await UpdateItem(Number(form.id), form as Item);
+			newDish = await UpdateDish(Number(form.id), form as Dish);
 		} else {
-			newItem = await CreateItem(form as NewItem);
+			newDish = await CreateDish(form as NewDish);
 		}
 		
-		if (!newItem.error) {
+		if (!newDish.error) {
 			closeForm();
 			fetchData(true);
 		}
@@ -105,7 +105,7 @@ export const Menu = (props: MenuProps): React.ReactElement => {
 
 	const addNewDish = async () => {
 		await closeForm();
-		openForm(NewEmptyItem);
+		openForm(NewEmptyDish);
 	}
 
 	React.useEffect(() => {
@@ -130,18 +130,18 @@ export const Menu = (props: MenuProps): React.ReactElement => {
 						<h2 style={titleSpacing(4, 2)} key={`cat_${ci}`}>{category.name}</h2>
 
 						<Grid columns={columns}>
-							{items[category.id].map((item: Item, i: number) =>
+							{dishes[category.id].map((dish: Dish, i: number) =>
 								<Card
-									key={`item_${i}`}
-									selected={isSelected(item)}
+									key={`dish_${i}`}
+									selected={isSelected(dish)}
 									onDeselect={() => closeForm()}
-									onSelect={() => openForm(item)}>
+									onSelect={() => openForm(dish)}>
 
-									<CardImage src={item.picture} />
+									<CardImage src={dish.picture} />
 
-									<h4 style={titleSpacing(0.8, 0.4)}>{item.name}</h4>
+									<h4 style={titleSpacing(0.8, 0.4)}>{dish.name}</h4>
 									<p style={font(Theme.CARD_DESCRIPTION_SIZE)}>
-										{limitChar(item.description, Theme.CARD_DESCRIPTION_LIMIT)}
+										{limitChar(dish.description, Theme.CARD_DESCRIPTION_LIMIT)}
 									</p>
 								</Card>
 							)}
