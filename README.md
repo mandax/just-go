@@ -83,7 +83,7 @@ You can also enter the package and run each project test with the same command.
 
 - [ ]  storage fonts locally on ui package
 - [ ]  change images based on unsplash api
-- [ ]  migrate item->dish
+- [x]  migrate item->dish
 - [ ]  add preloader steps
 - [ ]  add API URL to environment var
 - [ ]  add DB config to environment var
